@@ -13,15 +13,15 @@
 ***
 >文字链接
     [百度](http://www.baidu.com)
-    
+    [Google](http://google.com)
 
 
 ***
 >代码片段
   '  
     #include<stdio.h>
-    main(){
-    
+    main()
+    {
         printf("\nHello world!\n");
         printf("My name is Chen XingJi");
         
