@@ -13,12 +13,16 @@
 ***
 >文字链接
     [百度](http://www.baidu.com)
-    [Google](http://google.com)
+    
+    [新浪](http://www.sina.com)
+    
+>图片链接
+    
 
 
 ***
 >代码片段
-  '  
+
     #include<stdio.h>
     main()
     {
@@ -26,4 +30,4 @@
         printf("My name is Chen XingJi");
         
     }
-  '
+
