@@ -1,7 +1,7 @@
 # SSE_13081215
 ## 自我介绍
 ***
-*  我叫陈星吉，今年21岁，来自湖南，喜欢看电视，喜欢旅游，强迫症有点严重，做事情有点慢，或许应该说很慢，呃···我也不知道应该写些什么，先这样吧zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+*  我叫陈星吉，今年21岁，来自湖南，喜欢看电视，喜欢旅游，强迫症有点严重，做事情有点慢，或许应该说很慢，呃···我也不知道应该写些什么，先这样吧
   
 ***
 >个人信息
@@ -12,8 +12,16 @@
 
 ***
 >文字链接
-  百度：[baidu]{http://www.baidu.com}
+    百度：[baidu](http://www.baidu.com)
 
 
 ***
 >代码片段
+  '  #include<stdio.h>
+    main(){
+    
+        printf("\nHello world!\n");
+        printf("My name is Chen XingJi");
+        
+    }
+  '
