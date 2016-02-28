@@ -27,7 +27,6 @@
     {
         printf("\nHello world!\n");
         printf("My name is Chen XingJi");
-        
     }
 
 ```
