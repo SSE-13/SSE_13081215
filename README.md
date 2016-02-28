@@ -14,13 +14,14 @@
 >***文字链接***  
 　　[百度](http://www.baidu.com)  
 　　[新浪](http://www.sina.com)
+　　[Google](http://www.google.com)
     
 >***图片链接***
     ![img](http://pic24.nipic.com/20121008/9195996_102130319123_2.jpg)
 
 ***
 >***代码片段***
-
+```
     #include<stdio.h>
     main()
     {
@@ -29,4 +30,4 @@
         
     }
 
-
+```
