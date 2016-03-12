@@ -59,13 +59,17 @@ class Rect extends DisplayObject {
 }
 
 class TextField extends DisplayObject {
-
+    
+    text = 'hello world';
+    
     render(context: CanvasRenderingContext2D) {
-        context.font = "30px Arial bold";
+        context.font = "30px 微软雅黑 bold";
         context.fillStyle = '#FFFFFF';
-        context.fillText('相信猪会飞', 0, 20);
+        context.fillText(this.text, 0, 20);
     }
 }
+
+
 
 function drawQueue(queue) {
     for (var i = 0; i < renderQueue.length; i++) {
@@ -130,6 +134,7 @@ bitmap2.y=60;
 
 
 var text1 = new TextField();
+text1.text = "相信猪会飞"
 text1.x = 450;
 text1.y = 150;
 
@@ -137,12 +142,13 @@ text1.y = 150;
 
 //button
 var rect = new Rect();
-rect.x = 430;
+rect.x = 400;
 rect.y = 600;
-rect.width = 150;
+rect.width = 200;
 rect.height = 50;
 
 var text2 = new TextField();
+text2.text = "开始游戏";
 text2.x = 450;
 text2.y = 610;
 
@@ -155,6 +161,8 @@ var imageList = ['background.png','1.png'];
 loadResource(imageList, function() {
     drawQueue(renderQueue);
 })
+
+
 
 
 
