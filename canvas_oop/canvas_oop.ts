@@ -63,7 +63,7 @@ class TextField extends DisplayObject {
     text = 'hello world';
     
     render(context: CanvasRenderingContext2D) {
-        context.font = "30px 微软雅黑 bold";
+        context.font = "30px Arial bold";
         context.fillStyle = '#FFFFFF';
         context.fillText(this.text, 0, 20);
     }
