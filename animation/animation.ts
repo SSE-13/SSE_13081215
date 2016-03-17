@@ -134,8 +134,13 @@ rect2.color = "#000066";
 var body = new Body(rect);
 body.width = rect.width;
 body.height = rect.height;
+<<<<<<< HEAD
 body.vx = 5;//需要保证 vx 在 0-50的范围内行为正常
 body.vy = 0;//需要保证 vy 在 0-50的范围内行为正常
+=======
+body.vx = 5;//需要保证 vx 在 0-50的范围内行为正常.
+body.vy = 0;//需要保证 vy 在 0-50的范围内行为正常.
+>>>>>>> 9cbac68a62c14a87a285fa23b2b6eac25767e0f0
 
 var body2 = new Body(rect2);
 body2.width = rect2.width;
