@@ -57,6 +57,8 @@ var game;
         __extends(BoyBody, _super);
         function BoyBody() {
             _super.apply(this, arguments);
+            this.lastpoint = new astar.Node(1, 1);
+            this.currentpoint = new astar.Node(1, 1);
         }
         BoyBody.prototype.run = function (grid) {
             grid.setStartNode(0, 0);
@@ -65,16 +67,28 @@ var game;
             findpath.setHeurisitic(findpath.diagonal);
             var result = findpath.findPath(grid);
             var path = findpath._path;
-            for (var i = 0; i < path.length; i++) {
-                this.displayObject.x = GRID_PIXEL_WIDTH * (path[i].x - 1);
-                this.displayObject.y = GRID_PIXEL_HEIGHT * (path[i].y - 1);
-            }
+            this.b_path = path;
+            this.count = 0;
+            // for(var i = 0; i < path.length; i++){
+            //     this.displayObject.x = GRID_PIXEL_WIDTH * (path[i].x -1);
+            //     this.displayObject.y = GRID_PIXEL_HEIGHT * (path[i].y -1);
+            // }
             //this.displayObject.x = GRID_PIXEL_WIDTH ;
+            this.displayObject.x = GRID_PIXEL_WIDTH * (path[2].x - 1);
+            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[2].y - 1);
             console.log(path);
             console.log(grid.toString());
             alert(grid.toString());
         };
         BoyBody.prototype.onTicker = function (duringTime) {
+            this.count++;
+            // this.displayObject.x += duringTime * this.displayObject.vx;
+            // this.displayObject.y += duringTime * this.displayObject.vy;
+            switch (this.count / 100) {
+                case 1:
+                    this.displayObject.x = GRID_PIXEL_WIDTH * (this.b_path[1].x - 1);
+                    this.displayObject.y = GRID_PIXEL_HEIGHT * (this.b_path[1].y - 1);
+            }
         };
         return BoyBody;
     }(Body));
