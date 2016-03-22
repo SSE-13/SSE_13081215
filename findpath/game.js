@@ -119,8 +119,8 @@ var game;
             if ((this.count / 10 > 10) && (this.count / 10 < 11)) {
                 direction = new Vector2(this.b_path[11].x - this.b_path[10].x, this.b_path[11].y - this.b_path[10].y);
             }
-            this.vx = 3.5 * direction.x;
-            this.vy = 3.5 * direction.y;
+            this.vx = 3 * direction.x;
+            this.vy = 3 * direction.y;
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
             // switch(this.count/100){
