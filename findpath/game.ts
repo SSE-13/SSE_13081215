@@ -77,8 +77,8 @@ module game {
             // }
             //this.displayObject.x = GRID_PIXEL_WIDTH ;
             
-            this.displayObject.x = GRID_PIXEL_WIDTH * (path[2].x -1);
-            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[2].y -1);
+            this.displayObject.x = GRID_PIXEL_WIDTH * (path[3].x -1);
+            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[3].y -1);
             
             console.log(path);
             console.log(grid.toString());
@@ -87,26 +87,44 @@ module game {
 
         public onTicker(duringTime) {
             this.count ++;
-            var direction = (this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
-            this.displayObject.vx = direction.x;
-            this.displayObject.vy = direction.y;
+            
+            //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
+            var direction:Vector2;
+            
+            
             // this.displayObject.x += duringTime * this.displayObject.vx;
             // this.displayObject.y += duringTime * this.displayObject.vy;
-            
-            switch(this.count/100){
-                case 1:
-                    this.displayObject.x = GRID_PIXEL_WIDTH * (this.b_path[1].x -1);
-                    this.displayObject.y = GRID_PIXEL_HEIGHT * (this.b_path[1].y -1);
+        
+            if((this.count/10 > 1)&&(this.count/10 <2)){
+                direction = new Vector2 (this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
+                alert(direction.y);
                 
-               
             }
+            if((this.count/10 > 2)&&(this.count/10 <3)){
+                direction = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
+            }
+            this.displayObject.vx = direction.x;
+            this.displayObject.vy = direction.y;
+            this.displayObject.x = duringTime * this.displayObject.vx;
+            this.displayObject.y = duringTime * this.displayObject.vy;
             
-          
-            
-           
+            // switch(this.count/100){
+            //     case 1:
+            //         this.displayObject.x = GRID_PIXEL_WIDTH * (this.b_path[1].x -1);
+            //         this.displayObject.y = GRID_PIXEL_HEIGHT * (this.b_path[1].y -1);
+            // }
+    
         }
-        
-        
+    }
+    
+    
+    export class Vector2{
+        x:number;
+        y:number;
+        constructor(a :number,b :number){
+            this.x = a;
+            this.y = b;
+        }
     }
 }
 
