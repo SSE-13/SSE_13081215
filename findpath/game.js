@@ -65,6 +65,11 @@ var game;
             findpath.setHeurisitic(findpath.diagonal);
             var result = findpath.findPath(grid);
             var path = findpath._path;
+            for (var i = 0; i < path.length; i++) {
+                this.displayObject.x = GRID_PIXEL_WIDTH * (path[i].x - 1);
+                this.displayObject.y = GRID_PIXEL_HEIGHT * (path[i].y - 1);
+            }
+            //this.displayObject.x = GRID_PIXEL_WIDTH ;
             console.log(path);
             console.log(grid.toString());
             alert(grid.toString());
