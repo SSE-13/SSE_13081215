@@ -77,8 +77,8 @@ module game {
             // }
             //this.displayObject.x = GRID_PIXEL_WIDTH ;
             
-            this.displayObject.x = GRID_PIXEL_WIDTH * (path[3].x -1);
-            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[3].y -1);
+            this.displayObject.x = GRID_PIXEL_WIDTH * (path[0].x -1);
+            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[0].y -1);
             
             console.log(path);
             console.log(grid.toString());
@@ -94,19 +94,47 @@ module game {
             
             // this.displayObject.x += duringTime * this.displayObject.vx;
             // this.displayObject.y += duringTime * this.displayObject.vy;
+            if((this.count/10 > 0)&&(this.count/10 <1)){
+                direction = new Vector2 (this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
+                //alert(direction.y);
+            }
         
             if((this.count/10 > 1)&&(this.count/10 <2)){
                 direction = new Vector2 (this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
-                alert(direction.y);
-                
+                //alert(direction.y);
             }
             if((this.count/10 > 2)&&(this.count/10 <3)){
                 direction = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
             }
-            this.displayObject.vx = direction.x;
-            this.displayObject.vy = direction.y;
-            this.displayObject.x = duringTime * this.displayObject.vx;
-            this.displayObject.y = duringTime * this.displayObject.vy;
+            if((this.count/10 > 3)&&(this.count/10 <4)){
+                direction = new Vector2(this.b_path[4].x - this.b_path[3].x , this.b_path[4].y - this.b_path[3].y);
+            }
+            if((this.count/10 > 4)&&(this.count/10 <5)){
+                direction = new Vector2(this.b_path[5].x - this.b_path[4].x , this.b_path[5].y - this.b_path[4].y);
+            }
+            if((this.count/10 > 5)&&(this.count/10 <6)){
+                direction = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);
+            }
+            if((this.count/10 > 6)&&(this.count/10 <7)){
+                direction = new Vector2(this.b_path[7].x - this.b_path[6].x , this.b_path[7].y - this.b_path[6].y);
+            }
+            if((this.count/10 > 7)&&(this.count/10 <8)){
+                direction = new Vector2(this.b_path[8].x - this.b_path[7].x , this.b_path[8].y - this.b_path[7].y);
+            }
+            if((this.count/10 > 8)&&(this.count/10 <9)){
+                direction = new Vector2(this.b_path[9].x - this.b_path[8].x , this.b_path[9].y - this.b_path[8].y);
+            }
+            if((this.count/10 > 9)&&(this.count/10 <10)){
+                direction = new Vector2(this.b_path[10].x - this.b_path[9].x , this.b_path[10].y - this.b_path[9].y);
+            }
+            if((this.count/10 > 10)&&(this.count/10 <11)){
+                direction = new Vector2(this.b_path[11].x - this.b_path[10].x , this.b_path[11].y - this.b_path[10].y);
+            }
+            
+            this.vx = 3 * direction.x;
+            this.vy = 3 * direction.y;
+            this.x += duringTime * this.vx;
+            this.y += duringTime * this.vy;
             
             // switch(this.count/100){
             //     case 1:
