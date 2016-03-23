@@ -67,7 +67,7 @@ var game;
             grid.setStartNode(0, 0);
             grid.setEndNode(10, 8);
             var findpath = new astar.AStar();
-            findpath.setHeurisitic(findpath.diagonal);
+            findpath.setHeurisitic(findpath.euclidian);
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
@@ -81,7 +81,7 @@ var game;
             this.displayObject.y = GRID_PIXEL_HEIGHT * (path[0].y - 1);
             console.log(path);
             console.log(grid.toString());
-            alert(grid.toString());
+            alert("\nUse <euclidian> Method to find path:\n\n" + grid.toString());
         };
         BoyBody.prototype.onTicker = function (duringTime) {
             this.count++;
@@ -135,6 +135,7 @@ var game;
             }
             if (this.count / 100 > 11) {
                 this._dir = new Vector2(0, 0);
+                console.log("12 " + this._dir);
             }
             this.vx = 3.1 * (this._dir.getX());
             this.vy = 3.1 * (this._dir.b);

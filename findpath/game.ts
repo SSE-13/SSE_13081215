@@ -70,7 +70,7 @@ module game {
             grid.setStartNode(0, 0);
             grid.setEndNode(10, 8);
             var findpath = new astar.AStar();
-            findpath.setHeurisitic(findpath.diagonal);
+            findpath.setHeurisitic(findpath.euclidian);
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
@@ -87,7 +87,7 @@ module game {
             
             console.log(path);
             console.log(grid.toString());
-            alert(grid.toString());
+            alert("\nUse <euclidian> Method to find path:\n\n" + grid.toString());
         }
 
         public onTicker(duringTime) {
@@ -100,33 +100,27 @@ module game {
             // this.displayObject.y += duringTime * this.displayObject.vy;
             if((this.count/100 > 0)&&(this.count/100 <1)){
                 this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
-
                 console.log("1 "+this._dir);
             }
         
             if((this.count/100 > 1)&&(this.count/100 <2)){
                 this._dir = new Vector2(this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
-
                 console.log("2 "+this._dir);
             }
             if((this.count/100 > 2)&&(this.count/100 <3)){
                 this._dir = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
-        
                 console.log("3 "+this._dir);
             }
             if((this.count/100 > 3)&&(this.count/100 <4)){
                 this._dir = new Vector2(this.b_path[4].x - this.b_path[3].x , this.b_path[4].y - this.b_path[3].y);
-
                 console.log("4 "+this._dir);
             }
             if((this.count/100 > 4)&&(this.count/100 <5)){
                 this._dir = new Vector2(this.b_path[5].x - this.b_path[4].x , this.b_path[5].y - this.b_path[4].y);
-
                 console.log("5 "+this._dir);
             }
             if((this.count/100 > 5)&&(this.count/100 <6)){
-                this._dir = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);
-      
+                this._dir = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);     
                 console.log("6 "+this._dir);
             }
             if((this.count/100 > 6)&&(this.count/100 <7)){
@@ -136,26 +130,23 @@ module game {
             }
             if((this.count/100 > 7)&&(this.count/100 <8)){
                 this._dir = new Vector2(this.b_path[8].x - this.b_path[7].x , this.b_path[8].y - this.b_path[7].y);
-   
                 console.log("8 "+this._dir);
             }
             if((this.count/100 > 8)&&(this.count/100 <9)){
                 this._dir = new Vector2(this.b_path[9].x - this.b_path[8].x , this.b_path[9].y - this.b_path[8].y);
-       
                 console.log("9 "+this._dir);
             }
             if((this.count/100 > 9)&&(this.count/100 <10)){
                 this._dir = new Vector2(this.b_path[10].x - this.b_path[9].x , this.b_path[10].y - this.b_path[9].y);
-              
                 console.log("10 "+this._dir);
             }
             if((this.count/100 > 10)&&(this.count/100 <11)){
                 this._dir = new Vector2(this.b_path[11].x - this.b_path[10].x , this.b_path[11].y - this.b_path[10].y);
-             
                 console.log("11 "+this._dir);
             }
             if(this.count/100 > 11){
                 this._dir = new Vector2(0,0);
+                console.log("12 "+this._dir); 
             }
          
             
