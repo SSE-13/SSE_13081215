@@ -86,66 +86,58 @@ var game;
         BoyBody.prototype.onTicker = function (duringTime) {
             this.count++;
             //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
-            var direction;
+            // var direction:Vector2;
             // this.displayObject.x += duringTime * this.displayObject.vx;
             // this.displayObject.y += duringTime * this.displayObject.vy;
             if ((this.count / 100 > 0) && (this.count / 100 < 1)) {
-                direction = new Vector2(this.b_path[1].x - this.b_path[0].x, this.b_path[1].y - this.b_path[0].y);
-                this._dir = direction;
-                console.log("1 " + direction);
+                this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x, this.b_path[1].y - this.b_path[0].y);
+                console.log("1 " + this._dir);
             }
             if ((this.count / 100 > 1) && (this.count / 100 < 2)) {
-                direction = new Vector2(this.b_path[2].x - this.b_path[1].x, this.b_path[2].y - this.b_path[1].y);
-                this._dir = direction;
-                console.log("2 " + direction);
+                this._dir = new Vector2(this.b_path[2].x - this.b_path[1].x, this.b_path[2].y - this.b_path[1].y);
+                console.log("2 " + this._dir);
             }
             if ((this.count / 100 > 2) && (this.count / 100 < 3)) {
-                direction = new Vector2(this.b_path[3].x - this.b_path[2].x, this.b_path[3].y - this.b_path[2].y);
-                this._dir = direction;
-                console.log("3 " + direction);
+                this._dir = new Vector2(this.b_path[3].x - this.b_path[2].x, this.b_path[3].y - this.b_path[2].y);
+                console.log("3 " + this._dir);
             }
             if ((this.count / 100 > 3) && (this.count / 100 < 4)) {
-                direction = new Vector2(this.b_path[4].x - this.b_path[3].x, this.b_path[4].y - this.b_path[3].y);
-                this._dir = direction;
-                console.log("4 " + direction);
+                this._dir = new Vector2(this.b_path[4].x - this.b_path[3].x, this.b_path[4].y - this.b_path[3].y);
+                console.log("4 " + this._dir);
             }
             if ((this.count / 100 > 4) && (this.count / 100 < 5)) {
-                direction = new Vector2(this.b_path[5].x - this.b_path[4].x, this.b_path[5].y - this.b_path[4].y);
-                this._dir = direction;
-                console.log("5 " + direction);
+                this._dir = new Vector2(this.b_path[5].x - this.b_path[4].x, this.b_path[5].y - this.b_path[4].y);
+                console.log("5 " + this._dir);
             }
             if ((this.count / 100 > 5) && (this.count / 100 < 6)) {
-                direction = new Vector2(this.b_path[6].x - this.b_path[5].x, this.b_path[6].y - this.b_path[5].y);
-                this._dir = direction;
-                console.log("6 " + direction);
+                this._dir = new Vector2(this.b_path[6].x - this.b_path[5].x, this.b_path[6].y - this.b_path[5].y);
+                console.log("6 " + this._dir);
             }
             if ((this.count / 100 > 6) && (this.count / 100 < 7)) {
-                direction = new Vector2(this.b_path[7].x - this.b_path[6].x, this.b_path[7].y - this.b_path[6].y);
-                this._dir = direction;
-                console.log("7 " + direction);
+                this._dir = new Vector2(this.b_path[7].x - this.b_path[6].x, this.b_path[7].y - this.b_path[6].y);
+                console.log("7 " + this._dir);
             }
             if ((this.count / 100 > 7) && (this.count / 100 < 8)) {
-                direction = new Vector2(this.b_path[8].x - this.b_path[7].x, this.b_path[8].y - this.b_path[7].y);
-                this._dir = direction;
-                console.log("8 " + direction);
+                this._dir = new Vector2(this.b_path[8].x - this.b_path[7].x, this.b_path[8].y - this.b_path[7].y);
+                console.log("8 " + this._dir);
             }
             if ((this.count / 100 > 8) && (this.count / 100 < 9)) {
-                direction = new Vector2(this.b_path[9].x - this.b_path[8].x, this.b_path[9].y - this.b_path[8].y);
-                this._dir = direction;
-                console.log("9 " + direction);
+                this._dir = new Vector2(this.b_path[9].x - this.b_path[8].x, this.b_path[9].y - this.b_path[8].y);
+                console.log("9 " + this._dir);
             }
             if ((this.count / 100 > 9) && (this.count / 100 < 10)) {
-                direction = new Vector2(this.b_path[10].x - this.b_path[9].x, this.b_path[10].y - this.b_path[9].y);
-                this._dir = direction;
-                console.log("10 " + direction);
+                this._dir = new Vector2(this.b_path[10].x - this.b_path[9].x, this.b_path[10].y - this.b_path[9].y);
+                console.log("10 " + this._dir);
             }
             if ((this.count / 100 > 10) && (this.count / 100 < 11)) {
-                direction = new Vector2(this.b_path[11].x - this.b_path[10].x, this.b_path[11].y - this.b_path[10].y);
-                this._dir = direction;
-                console.log("11 " + direction);
+                this._dir = new Vector2(this.b_path[11].x - this.b_path[10].x, this.b_path[11].y - this.b_path[10].y);
+                console.log("11 " + this._dir);
             }
-            this.vx = 2.5 * (this._dir.getX());
-            this.vy = 2.5 * (this._dir.b);
+            if (this.count / 100 > 11) {
+                this._dir = new Vector2(0, 0);
+            }
+            this.vx = 3.1 * (this._dir.getX());
+            this.vy = 3.1 * (this._dir.b);
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
             // switch(this.count/100){
