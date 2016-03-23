@@ -64,6 +64,7 @@ module game {
      //   public currentpoint :astar.Node = new astar.Node(1,1);
         public b_path : Array<astar.Node>;
         public count:number;
+        public _dir:Vector2;
         
         public run(grid) {
             grid.setStartNode(0, 0);
@@ -99,52 +100,64 @@ module game {
             // this.displayObject.y += duringTime * this.displayObject.vy;
             if((this.count/10 > 0)&&(this.count/10 <1)){
                 direction = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
+                this._dir = direction;
                 console.log("1 "+direction);
             }
         
             if((this.count/10 > 1)&&(this.count/10 <2)){
                 direction = new Vector2(this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
+                this._dir = direction;
                 console.log("2 "+direction);
             }
             if((this.count/10 > 2)&&(this.count/10 <3)){
                 direction = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
+                this._dir = direction;
                 console.log("3 "+direction);
             }
             if((this.count/10 > 3)&&(this.count/10 <4)){
                 direction = new Vector2(this.b_path[4].x - this.b_path[3].x , this.b_path[4].y - this.b_path[3].y);
+                this._dir = direction;
                 console.log("4 "+direction);
             }
             if((this.count/10 > 4)&&(this.count/10 <5)){
                 direction = new Vector2(this.b_path[5].x - this.b_path[4].x , this.b_path[5].y - this.b_path[4].y);
+                this._dir = direction;
                 console.log("5 "+direction);
             }
             if((this.count/10 > 5)&&(this.count/10 <6)){
                 direction = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);
+                this._dir = direction;
                 console.log("6 "+direction);
             }
             if((this.count/10 > 6)&&(this.count/10 <7)){
                 direction = new Vector2(this.b_path[7].x - this.b_path[6].x , this.b_path[7].y - this.b_path[6].y);
+                this._dir = direction;
                 console.log("7 "+direction);
             }
             if((this.count/10 > 7)&&(this.count/10 <8)){
                 direction = new Vector2(this.b_path[8].x - this.b_path[7].x , this.b_path[8].y - this.b_path[7].y);
+                this._dir = direction;
                 console.log("8 "+direction);
             }
             if((this.count/10 > 8)&&(this.count/10 <9)){
                 direction = new Vector2(this.b_path[9].x - this.b_path[8].x , this.b_path[9].y - this.b_path[8].y);
+                this._dir = direction;
                 console.log("9 "+direction);
             }
             if((this.count/10 > 9)&&(this.count/10 <10)){
                 direction = new Vector2(this.b_path[10].x - this.b_path[9].x , this.b_path[10].y - this.b_path[9].y);
+                this._dir = direction;
                 console.log("10 "+direction);
             }
             if((this.count/10 > 10)&&(this.count/10 <11)){
                 direction = new Vector2(this.b_path[11].x - this.b_path[10].x , this.b_path[11].y - this.b_path[10].y);
+                this._dir = direction;
                 console.log("11 "+direction);
             }
+         //   console.log("SSSSSSSSSSSSSSSSSSS "+direction);
             
-            this.vx = 2.5 * (direction.a);
-            this.vy = 2.5 * (direction.b);
+            this.vx = 2.5 * (this._dir.getX());
+            this.vy = 2.5 * (this._dir.b);
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
             
@@ -168,6 +181,11 @@ module game {
         toString(){
             return "(" + this.a + "," + this.b + ")";
         }
+        
+        public getX(): number {
+            return this.a;
+        }
+        
         
     }
 }
