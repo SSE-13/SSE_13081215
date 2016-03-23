@@ -98,63 +98,63 @@ module game {
            
             // this.displayObject.x += duringTime * this.displayObject.vx;
             // this.displayObject.y += duringTime * this.displayObject.vy;
-            if((this.count/10 > 0)&&(this.count/10 <1)){
+            if((this.count/100 > 0)&&(this.count/100 <1)){
                 direction = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
                 this._dir = direction;
                 console.log("1 "+direction);
             }
         
-            if((this.count/10 > 1)&&(this.count/10 <2)){
+            if((this.count/100 > 1)&&(this.count/100 <2)){
                 direction = new Vector2(this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
                 this._dir = direction;
                 console.log("2 "+direction);
             }
-            if((this.count/10 > 2)&&(this.count/10 <3)){
+            if((this.count/100 > 2)&&(this.count/100 <3)){
                 direction = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
                 this._dir = direction;
                 console.log("3 "+direction);
             }
-            if((this.count/10 > 3)&&(this.count/10 <4)){
+            if((this.count/100 > 3)&&(this.count/100 <4)){
                 direction = new Vector2(this.b_path[4].x - this.b_path[3].x , this.b_path[4].y - this.b_path[3].y);
                 this._dir = direction;
                 console.log("4 "+direction);
             }
-            if((this.count/10 > 4)&&(this.count/10 <5)){
+            if((this.count/100 > 4)&&(this.count/100 <5)){
                 direction = new Vector2(this.b_path[5].x - this.b_path[4].x , this.b_path[5].y - this.b_path[4].y);
                 this._dir = direction;
                 console.log("5 "+direction);
             }
-            if((this.count/10 > 5)&&(this.count/10 <6)){
+            if((this.count/100 > 5)&&(this.count/100 <6)){
                 direction = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);
                 this._dir = direction;
                 console.log("6 "+direction);
             }
-            if((this.count/10 > 6)&&(this.count/10 <7)){
+            if((this.count/100 > 6)&&(this.count/100 <7)){
                 direction = new Vector2(this.b_path[7].x - this.b_path[6].x , this.b_path[7].y - this.b_path[6].y);
                 this._dir = direction;
                 console.log("7 "+direction);
             }
-            if((this.count/10 > 7)&&(this.count/10 <8)){
+            if((this.count/100 > 7)&&(this.count/100 <8)){
                 direction = new Vector2(this.b_path[8].x - this.b_path[7].x , this.b_path[8].y - this.b_path[7].y);
                 this._dir = direction;
                 console.log("8 "+direction);
             }
-            if((this.count/10 > 8)&&(this.count/10 <9)){
+            if((this.count/100 > 8)&&(this.count/100 <9)){
                 direction = new Vector2(this.b_path[9].x - this.b_path[8].x , this.b_path[9].y - this.b_path[8].y);
                 this._dir = direction;
                 console.log("9 "+direction);
             }
-            if((this.count/10 > 9)&&(this.count/10 <10)){
+            if((this.count/100 > 9)&&(this.count/100 <10)){
                 direction = new Vector2(this.b_path[10].x - this.b_path[9].x , this.b_path[10].y - this.b_path[9].y);
                 this._dir = direction;
                 console.log("10 "+direction);
             }
-            if((this.count/10 > 10)&&(this.count/10 <11)){
+            if((this.count/100 > 10)&&(this.count/100 <11)){
                 direction = new Vector2(this.b_path[11].x - this.b_path[10].x , this.b_path[11].y - this.b_path[10].y);
                 this._dir = direction;
                 console.log("11 "+direction);
             }
-         //   console.log("SSSSSSSSSSSSSSSSSSS "+direction);
+         
             
             this.vx = 2.5 * (this._dir.getX());
             this.vy = 2.5 * (this._dir.b);
