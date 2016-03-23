@@ -27,20 +27,24 @@ module game {
         }
 
         render(context: CanvasRenderingContext2D) {
-            context.fillStyle = '#0000FF';
+            
             context.strokeStyle = '#AAAAAA';
-            context.beginPath();
             for (var i = 0; i < NUM_COLS; i++) {
                 for (var j = 0; j < NUM_ROWS; j++) {
+                    context.beginPath();
+                    if(this.grid.getNode(i,j).walkable == false){
+                        context.fillStyle = '#000000';
+                    }
+                    else{
+                        context.fillStyle = '#0000FF';
+                    }
                     context.rect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT);
                     context.fill();
                     context.stroke();
+                    context.closePath();
                 }
             }
-            context.closePath();
-
         }
-
     }
 
     export class BoyShape extends DisplayObject {
@@ -56,8 +60,8 @@ module game {
     export class BoyBody extends Body {     //Body类在animation中，用于控制Body的实时位置渲染，Body中有一个displayObject属性
       
 
-        public lastpoint :astar.Node=new astar.Node(1,1);
-        public currentpoint :astar.Node = new astar.Node(1,1);
+     //   public lastpoint :astar.Node=new astar.Node(1,1);
+     //   public currentpoint :astar.Node = new astar.Node(1,1);
         public b_path : Array<astar.Node>;
         public count:number;
         
@@ -90,49 +94,57 @@ module game {
             
             //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
             var direction:Vector2;
-            
-            
+           
             // this.displayObject.x += duringTime * this.displayObject.vx;
             // this.displayObject.y += duringTime * this.displayObject.vy;
             if((this.count/10 > 0)&&(this.count/10 <1)){
-                direction = new Vector2 (this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
-                //alert(direction.y);
+                direction = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
+                console.log("1 "+direction);
             }
         
             if((this.count/10 > 1)&&(this.count/10 <2)){
-                direction = new Vector2 (this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
-                //alert(direction.y);
+                direction = new Vector2(this.b_path[2].x - this.b_path[1].x , this.b_path[2].y - this.b_path[1].y);
+                console.log("2 "+direction);
             }
             if((this.count/10 > 2)&&(this.count/10 <3)){
                 direction = new Vector2(this.b_path[3].x - this.b_path[2].x , this.b_path[3].y - this.b_path[2].y);
+                console.log("3 "+direction);
             }
             if((this.count/10 > 3)&&(this.count/10 <4)){
                 direction = new Vector2(this.b_path[4].x - this.b_path[3].x , this.b_path[4].y - this.b_path[3].y);
+                console.log("4 "+direction);
             }
             if((this.count/10 > 4)&&(this.count/10 <5)){
                 direction = new Vector2(this.b_path[5].x - this.b_path[4].x , this.b_path[5].y - this.b_path[4].y);
+                console.log("5 "+direction);
             }
             if((this.count/10 > 5)&&(this.count/10 <6)){
                 direction = new Vector2(this.b_path[6].x - this.b_path[5].x , this.b_path[6].y - this.b_path[5].y);
+                console.log("6 "+direction);
             }
             if((this.count/10 > 6)&&(this.count/10 <7)){
                 direction = new Vector2(this.b_path[7].x - this.b_path[6].x , this.b_path[7].y - this.b_path[6].y);
+                console.log("7 "+direction);
             }
             if((this.count/10 > 7)&&(this.count/10 <8)){
                 direction = new Vector2(this.b_path[8].x - this.b_path[7].x , this.b_path[8].y - this.b_path[7].y);
+                console.log("8 "+direction);
             }
             if((this.count/10 > 8)&&(this.count/10 <9)){
                 direction = new Vector2(this.b_path[9].x - this.b_path[8].x , this.b_path[9].y - this.b_path[8].y);
+                console.log("9 "+direction);
             }
             if((this.count/10 > 9)&&(this.count/10 <10)){
                 direction = new Vector2(this.b_path[10].x - this.b_path[9].x , this.b_path[10].y - this.b_path[9].y);
+                console.log("10 "+direction);
             }
             if((this.count/10 > 10)&&(this.count/10 <11)){
                 direction = new Vector2(this.b_path[11].x - this.b_path[10].x , this.b_path[11].y - this.b_path[10].y);
+                console.log("11 "+direction);
             }
             
-            this.vx = 3 * direction.x;
-            this.vy = 3 * direction.y;
+            this.vx = 2.5 * (direction.a);
+            this.vy = 2.5 * (direction.b);
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
             
@@ -147,12 +159,16 @@ module game {
     
     
     export class Vector2{
-        x:number;
-        y:number;
+        public a:number;
+        public b:number;
         constructor(a :number,b :number){
-            this.x = a;
-            this.y = b;
+            this.a = a;
+            this.b = b;
         }
+        toString(){
+            return "(" + this.a + "," + this.b + ")";
+        }
+        
     }
 }
 
