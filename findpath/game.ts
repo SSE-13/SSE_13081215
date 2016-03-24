@@ -64,7 +64,12 @@ module game {
      //   public currentpoint :astar.Node = new astar.Node(1,1);
         public b_path : Array<astar.Node>;
         public count:number;
-        public _dir:Vector2;
+     //  public _dir:Vector2;
+        
+        
+        
+        public temp:number = 1;
+   
         
         public run(grid) {
             grid.setStartNode(0, 0);
@@ -86,9 +91,29 @@ module game {
         }
 
         public onTicker(duringTime) {
-            this.count ++;
+            
+            
+            if(this.temp < this.b_path.length - 1){
+                var targetX = this.b_path[this.temp].x * GRID_PIXEL_WIDTH;
+                var targetY = this.b_path[this.temp].y * GRID_PIXEL_HEIGHT;
+                if(this.x < targetX){
+                    this.x = (this.x + this.vx * duringTime > targetX) ? targetX : (this.x + this.vx * duringTime);
+                }
+                if(this.y < targetY){
+                    this.y = (this.y + this.vy * duringTime > targetY) ? targetY : (this.y + this.vy * duringTime);
+                }
+                if(this.x == targetX && this.y == targetY){
+                    this.temp ++;
+                }
+                
+                console.log(this.temp,this.x,this.y);
+        
+            }
+         
+       
+         
+          /*  this.count ++;
 
-   
             if((this.count/100 > 0)&&(this.count/100 <1)){
                 this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
                 console.log("1 "+this._dir);
@@ -144,12 +169,14 @@ module game {
             this.vx = 3.1 * (this._dir.x);
             this.vy = 3.1 * (this._dir.y);
             this.x += duringTime * this.vx;
-            this.y += duringTime * this.vy;
+            this.y += duringTime * this.vy;     */
             
         }
     }
     
-    
+  
+  
+   /* 
     export class Vector2{
         public x:number;
         public y:number;
@@ -160,7 +187,9 @@ module game {
         toString(){
             return "(" + this.x + "," + this.y + ")";
         } 
-    }
+    }*/
+    
+    
 }
 
 
