@@ -72,13 +72,8 @@ var game;
             var path = findpath._path;
             this.b_path = path;
             this.count = 0;
-            // for(var i = 0; i < path.length; i++){
-            //     this.displayObject.x = GRID_PIXEL_WIDTH * (path[i].x -1);
-            //     this.displayObject.y = GRID_PIXEL_HEIGHT * (path[i].y -1);
-            // }
-            //this.displayObject.x = GRID_PIXEL_WIDTH ;
-            this.displayObject.x = GRID_PIXEL_WIDTH * (path[0].x - 1);
-            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[0].y - 1);
+            this.x = GRID_PIXEL_WIDTH * path[0].x;
+            this.y = GRID_PIXEL_HEIGHT * path[0].y;
             console.log(path);
             console.log(grid.toString());
             alert("\nUse <euclidian> Method to find path:\n\n" + grid.toString());
@@ -87,8 +82,6 @@ var game;
             this.count++;
             //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
             // var direction:Vector2;
-            // this.displayObject.x += duringTime * this.displayObject.vx;
-            // this.displayObject.y += duringTime * this.displayObject.vy;
             if ((this.count / 100 > 0) && (this.count / 100 < 1)) {
                 this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x, this.b_path[1].y - this.b_path[0].y);
                 console.log("1 " + this._dir);
@@ -137,29 +130,21 @@ var game;
                 this._dir = new Vector2(0, 0);
                 console.log("12 " + this._dir);
             }
-            this.vx = 3.1 * (this._dir.getX());
-            this.vy = 3.1 * (this._dir.b);
+            this.vx = 3.1 * (this._dir.x);
+            this.vy = 3.1 * (this._dir.y);
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
-            // switch(this.count/100){
-            //     case 1:
-            //         this.displayObject.x = GRID_PIXEL_WIDTH * (this.b_path[1].x -1);
-            //         this.displayObject.y = GRID_PIXEL_HEIGHT * (this.b_path[1].y -1);
-            // }
         };
         return BoyBody;
     }(Body));
     game.BoyBody = BoyBody;
     var Vector2 = (function () {
-        function Vector2(a, b) {
-            this.a = a;
-            this.b = b;
+        function Vector2(x, y) {
+            this.x = x;
+            this.y = y;
         }
         Vector2.prototype.toString = function () {
-            return "(" + this.a + "," + this.b + ")";
-        };
-        Vector2.prototype.getX = function () {
-            return this.a;
+            return "(" + this.x + "," + this.y + ")";
         };
         return Vector2;
     }());

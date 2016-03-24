@@ -76,14 +76,10 @@ module game {
             this.b_path = path;
             this.count = 0;
            
-            // for(var i = 0; i < path.length; i++){
-            //     this.displayObject.x = GRID_PIXEL_WIDTH * (path[i].x -1);
-            //     this.displayObject.y = GRID_PIXEL_HEIGHT * (path[i].y -1);
-            // }
-            //this.displayObject.x = GRID_PIXEL_WIDTH ;
+      
             
-            this.displayObject.x = GRID_PIXEL_WIDTH * (path[0].x -1);
-            this.displayObject.y = GRID_PIXEL_HEIGHT * (path[0].y -1);
+            this.x = GRID_PIXEL_WIDTH * path[0].x;
+            this.y = GRID_PIXEL_HEIGHT * path[0].y;
             
             console.log(path);
             console.log(grid.toString());
@@ -96,8 +92,7 @@ module game {
             //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
            // var direction:Vector2;
            
-            // this.displayObject.x += duringTime * this.displayObject.vx;
-            // this.displayObject.y += duringTime * this.displayObject.vy;
+   
             if((this.count/100 > 0)&&(this.count/100 <1)){
                 this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
                 console.log("1 "+this._dir);
@@ -150,37 +145,25 @@ module game {
             }
          
             
-            this.vx = 3.1 * (this._dir.getX());
-            this.vy = 3.1 * (this._dir.b);
+            this.vx = 3.1 * (this._dir.x);
+            this.vy = 3.1 * (this._dir.y);
             this.x += duringTime * this.vx;
             this.y += duringTime * this.vy;
             
-            // switch(this.count/100){
-            //     case 1:
-            //         this.displayObject.x = GRID_PIXEL_WIDTH * (this.b_path[1].x -1);
-            //         this.displayObject.y = GRID_PIXEL_HEIGHT * (this.b_path[1].y -1);
-            // }
-    
         }
     }
     
     
     export class Vector2{
-        public a:number;
-        public b:number;
-        constructor(a :number,b :number){
-            this.a = a;
-            this.b = b;
+        public x:number;
+        public y:number;
+        constructor(x :number,y :number){
+            this.x = x;
+            this.y = y;
         }
         toString(){
-            return "(" + this.a + "," + this.b + ")";
-        }
-        
-        public getX(): number {
-            return this.a;
-        }
-        
-        
+            return "(" + this.x + "," + this.y + ")";
+        } 
     }
 }
 
