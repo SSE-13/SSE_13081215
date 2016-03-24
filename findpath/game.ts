@@ -75,8 +75,7 @@ module game {
             var path = findpath._path;
             this.b_path = path;
             this.count = 0;
-           
-      
+          
             
             this.x = GRID_PIXEL_WIDTH * path[0].x;
             this.y = GRID_PIXEL_HEIGHT * path[0].y;
@@ -88,10 +87,7 @@ module game {
 
         public onTicker(duringTime) {
             this.count ++;
-            
-            //var direction = new Vector2(this.currentpoint.x - this.lastpoint.x ,this.currentpoint.y - this.lastpoint.y);
-           // var direction:Vector2;
-           
+
    
             if((this.count/100 > 0)&&(this.count/100 <1)){
                 this._dir = new Vector2(this.b_path[1].x - this.b_path[0].x , this.b_path[1].y - this.b_path[0].y);
