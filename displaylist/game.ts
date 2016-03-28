@@ -46,7 +46,7 @@ class HumanBody extends Body {
 
 var ticker = new Ticker();
 var body = new HumanBody(humanContainer);
-body.vx = 3;
+
 ticker.start([body]);
 
 
