@@ -28,7 +28,7 @@ var Ticker = (function () {
 }());
 var Body = (function () {
     function Body(displayObject) {
-        this.vx = 1;
+        this.vx = 10;
         this.vy = 0;
         this.x = 0;
         this.y = 0;

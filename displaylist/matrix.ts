@@ -223,7 +223,7 @@ module render {
             this.ty = y;
 
             var skewX, skewY;
-            skewX = skewY = rotation / 180 * Math.PI;      //将rotation 表示成弧度
+            skewX = skewY = rotation / 180 * Math.PI;;      //将rotation 表示成弧度
 
             if ((skewX == 0 || skewX == TwoPI) && (skewY == 0 || skewY == TwoPI)) {    
                 this.a = scaleX;

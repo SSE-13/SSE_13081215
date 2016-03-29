@@ -4,8 +4,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var humanContainer = new render.DisplayObjectContainer();
-humanContainer.x = 120;
-humanContainer.y = 250;
+// humanContainer.x = 120;
+// humanContainer.y = 250;
+var bag = new render.DisplayObjectContainer();
+bag.x = 120;
+bag.y = 250;
 var head = new render.Bitmap();
 head.x = 50;
 var trunk = new render.Bitmap();
@@ -28,12 +31,13 @@ left_arm.source = "left_arm0.png";
 right_arm.source = "right_arm0.png";
 left_leg.source = "left_leg0.png";
 right_leg.source = "right_leg0.png";
-humanContainer.addChild(head);
-humanContainer.addChild(trunk);
-humanContainer.addChild(left_arm);
-humanContainer.addChild(right_arm);
-humanContainer.addChild(left_leg);
-humanContainer.addChild(right_leg);
+humanContainer.addChild(bag);
+bag.addChild(head);
+bag.addChild(trunk);
+bag.addChild(left_arm);
+bag.addChild(right_arm);
+bag.addChild(left_leg);
+bag.addChild(right_leg);
 var renderCore = new render.RenderCore();
 renderCore.start(humanContainer, ["head0.png", "body0.png", "left_arm0.png", "right_arm0.png", "left_leg0.png", "right_leg0.png"]);
 var HumanBody = (function (_super) {
@@ -42,16 +46,15 @@ var HumanBody = (function (_super) {
         _super.apply(this, arguments);
     }
     HumanBody.prototype.onTicker = function (duringTime) {
-        console.log("1");
+        //  console.log("vx: "+this.vx+"    x: "+ this.x+"    y: "+this.y);
         this.x += duringTime * this.vx;
-        console.log("vx: " + this.vx + "    x: " + this.x + "    y: " + this.y);
-        // this.y += duringTime * this.vy;
-        this.rotation += duringTime * 10;
+        //this.rotation += duringTime * 5;
     };
     return HumanBody;
 }(Body));
 var ticker = new Ticker();
 var body = new HumanBody(humanContainer); //humanContainer即为基类Body中的那个“displayObject”属性
-body.x = 50;
+console.log("body: x:" + body.x + "   y:" + body.y);
+console.log("humanContainer  x:" + body.displayObject.x + "y:" + body.displayObject.y);
 ticker.start([body]);
 //# sourceMappingURL=game.js.map
