@@ -32,7 +32,7 @@ class Ticker {
 
 class Body {
 
-    vx = 10;
+    vx = 2;
     vy = 0;
     x = 0;
     y = 0;

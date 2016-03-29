@@ -49,8 +49,8 @@ module render {
                 this.globalMatrix.b = (localMatrix.a * parent.globalMatrix.b) + (localMatrix.b * parent.globalMatrix.d);
                 this.globalMatrix.c = (localMatrix.c * parent.globalMatrix.a) + (localMatrix.d * parent.globalMatrix.c);
                 this.globalMatrix.d = (localMatrix.c * parent.globalMatrix.b) + (localMatrix.d * parent.globalMatrix.d);
-                this.globalMatrix.tx = (localMatrix.tx * parent.globalMatrix.a) + (localMatrix.ty * parent.globalMatrix.c);
-                this.globalMatrix.ty = (localMatrix.tx * parent.globalMatrix.b) + (localMatrix.ty * parent.globalMatrix.d);  
+                this.globalMatrix.tx = (localMatrix.tx * parent.globalMatrix.a) + (localMatrix.ty * parent.globalMatrix.c) + parent.globalMatrix.tx;
+                this.globalMatrix.ty = (localMatrix.tx * parent.globalMatrix.b) + (localMatrix.ty * parent.globalMatrix.d) + parent.globalMatrix.ty;  
                 
                         
             }

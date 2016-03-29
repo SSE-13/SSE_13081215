@@ -11,21 +11,23 @@ bag.x = 120;
 bag.y = 250;
 
 var head = new render.Bitmap();
-head.x = 50;
+head.x = -70;
+head.y = -250;
 var trunk = new render.Bitmap();
-trunk.x = 55;
-trunk.y = 220;
+trunk.x = 55-120;
+trunk.y = 220-250;
 var left_arm = new render.Bitmap();
-left_arm.x = 210;
-left_arm.y = 240;
+left_arm.x = 210-120;
+left_arm.y = 240-250;
 var right_arm = new render.Bitmap();
-right_arm.y = 240;
+right_arm.x = -120;
+right_arm.y = 240-250;
 var left_leg = new render.Bitmap();
-left_leg.x = 120;
-left_leg.y = 420;
+left_leg.x = 120-120;
+left_leg.y = 420-250;
 var right_leg = new render.Bitmap();
-right_leg.x = 30;
-right_leg.y = 418;
+right_leg.x = 30-120;
+right_leg.y = 418-250;
 
 
 head.source = "head0.png";
@@ -53,9 +55,10 @@ class HumanBody extends Body {          //Body类中有一个displayObject属性
 
     onTicker(duringTime: number) {
 
-      //  console.log("vx: "+this.vx+"    x: "+ this.x+"    y: "+this.y);
-        this.x += duringTime * this.vx;
-        //this.rotation += duringTime * 5;
+       console.log("vx: "+this.vx+"    x: "+ this.x+"    y: "+this.y);
+      
+       this.x += duringTime * this.vx;
+        this.rotation += duringTime * 5;
     }
 }
 
@@ -64,6 +67,8 @@ var body = new HumanBody(humanContainer);       //humanContainer即为基类Body
 
 console.log("body: x:"+body.x+"   y:"+body.y);
 console.log("humanContainer  x:"+body.displayObject.x+"y:"+body.displayObject.y);
+
+
 
 ticker.start([body]);
 
