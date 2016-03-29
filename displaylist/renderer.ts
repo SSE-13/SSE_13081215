@@ -43,14 +43,16 @@ module render {
             else {
                 //TODO:
                 // GLOBAL_MATRIX = LOCAL_MATRIX * PARENT_GLOBAL_MATRIX 
-                // this.globalMatrix.a = (localMatrix.a * parent.globalMatrix.a) + (localMatrix.b * parent.globalMatrix.c);
-                // this.globalMatrix.b = (localMatrix.a * parent.globalMatrix.b) + (localMatrix.b * parent.globalMatrix.d);
-                // this.globalMatrix.c = (localMatrix.c * parent.globalMatrix.a) + (localMatrix.d * parent.globalMatrix.c);
-                // this.globalMatrix.d = (localMatrix.c * parent.globalMatrix.b) + (localMatrix.d * parent.globalMatrix.d);
-                // this.globalMatrix.tx = (localMatrix.tx * parent.globalMatrix.a) + (localMatrix.ty * parent.globalMatrix.c);
-                // this.globalMatrix.ty = (localMatrix.tx * parent.globalMatrix.b) + (localMatrix.ty * parent.globalMatrix.d);  
                 
-                this.globalMatrix = parent.globalMatrix;              
+              //  this.globalMatrix = parent.globalMatrix; 
+                this.globalMatrix.a = (localMatrix.a * parent.globalMatrix.a) + (localMatrix.b * parent.globalMatrix.c);
+                this.globalMatrix.b = (localMatrix.a * parent.globalMatrix.b) + (localMatrix.b * parent.globalMatrix.d);
+                this.globalMatrix.c = (localMatrix.c * parent.globalMatrix.a) + (localMatrix.d * parent.globalMatrix.c);
+                this.globalMatrix.d = (localMatrix.c * parent.globalMatrix.b) + (localMatrix.d * parent.globalMatrix.d);
+                this.globalMatrix.tx = (localMatrix.tx * parent.globalMatrix.a) + (localMatrix.ty * parent.globalMatrix.c);
+                this.globalMatrix.ty = (localMatrix.tx * parent.globalMatrix.b) + (localMatrix.ty * parent.globalMatrix.d);  
+                
+                        
             }
 
 

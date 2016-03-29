@@ -125,8 +125,7 @@ var render;
             this.tx = x;
             this.ty = y;
             var skewX, skewY;
-            skewX = skewY = rotation / 180 * Math.PI;
-            ;
+            skewX = skewY = rotation / 180 * Math.PI; //将rotation 表示成弧度
             if ((skewX == 0 || skewX == TwoPI) && (skewY == 0 || skewY == TwoPI)) {
                 this.a = scaleX;
                 this.b = this.c = 0;
