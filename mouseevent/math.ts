@@ -12,7 +12,7 @@ module math {
         }
     }
 
-    export function pointAppendMatrix(point: Point, m: Matrix): Point {
+    export function pointAppendMatrix(point: Point, m: Matrix): Point {   //点与物体的全局矩阵相乘得到点对物体的相对坐标
         var x = m.a * point.x + m.c * point.y + m.tx;
         var y = m.b * point.x + m.d * point.y + m.ty;
         return new Point(x, y);

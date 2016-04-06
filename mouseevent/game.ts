@@ -46,19 +46,17 @@ renderCore.start(humanContainer, ["head.png","body.png","left_arm.png","right_ar
 
 class HumanBody extends Body {
     
-    
     vx:number = 5;
+    r:number = 3; 
     
-
     onTicker(duringTime: number) {
         this.x += duringTime * this.vx;
-        this.rotation += duringTime * 3; 
-
+        this.rotation += duringTime * this.r; 
     }
 }
 
 var ticker = new Ticker();
-var body = new HumanBody(humanContainer);
+var body = new HumanBody(humanContainer);  //humanContainer即为Body类中的displayobject
 
 body.x = 150;
 body.y = 300;
@@ -69,17 +67,36 @@ var eventCore = new events.EventCore();
 eventCore.init();
 
 var headHitTest = (localPoint:math.Point,displayObject:render.DisplayObject) =>{
-    alert (`点击位置为${localPoint.x},${localPoint.y}`);
-    return true;
+    //alert (`点击位置为${localPoint.x},${localPoint.y}`);
+    if((localPoint.x >= 0)&&(localPoint.x <= 237)&&(localPoint.y >= 0)&&(localPoint.y <= 237))
+        return true;  
+    else
+        return false;
 }
-
 var headOnClick = () => {
-    alert("clicked!!");
-    body.vx *= -1;
-    //修改 HumanBody 的速度，使其反向移动
+    console.log("You clicked head!!!    invert orientation.");
+     body.vx *= -1;
+     body.r *=-1;
+     if(body.r == 0){
+         body.vx = 5; 
+         body.r = 3;
+     }
 }
 
+var legHitTest = (localPoint:math.Point,displayObject:render.DisplayObject) =>{
+    if((localPoint.x >= 0)&&(localPoint.x <= 115)&&(localPoint.y >= 0)&&(localPoint.y <= 145))
+        return true;  
+    else
+        return false;
+}
+var legOnClick = () =>{
+    console.log("You clicked leg!!!  stand still.");
+    body.vx = body.r = 0;
+    body.rotation = 0;
+}
 eventCore.register(head,headHitTest,headOnClick);
+eventCore.register(left_leg,legHitTest,legOnClick);
+eventCore.register(right_leg,legHitTest,legOnClick);
 
 
 
