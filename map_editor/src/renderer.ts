@@ -6,8 +6,6 @@ module render {
 
 
 
-
-
     /**
      * 基类，负责处理x,y,rotation 等属性
      */

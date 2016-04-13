@@ -36,8 +36,10 @@ function createMapEditor() {
 }
 function onTileClick(tile) {
     console.log(tile);
+    console.log(tile.x);
+    console.log(tile.y);
     var col = (tile.x) / (editor.GRID_PIXEL_WIDTH);
-    var row = tile.y / editor.GRID_PIXEL_HEIGHT;
+    var row = (tile.y) / (editor.GRID_PIXEL_HEIGHT);
     writefile(row, col, true);
 }
 var mapData = readFile();

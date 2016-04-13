@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 module events {
 
 
@@ -36,7 +30,7 @@ module events {
                 var info = this.eventInfos[i];
                 var globalMatrix = info.displayObject.globalMatrix;
                 //思考，invert 是什么意思？对应线性代数的什么概念？为什么要做这一步？
-                var invertGlobalMatrix = math.invertMatrix(globalMatrix);
+                var invertGlobalMatrix = math.invertMatrix(globalMatrix);          //逆->如何回去
                 var newPoint = math.pointAppendMatrix(stageClickedPoint, invertGlobalMatrix);
                 //如果检测返回true，则认为点中了
                 if (info.hitTest(newPoint, info.displayObject)) {
