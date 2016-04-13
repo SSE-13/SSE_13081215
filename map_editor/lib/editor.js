@@ -20,7 +20,7 @@ var editor;
             super();
         }
         setWalkable(value) {
-            this.color = value ? "#0000FF" : "#FF0000";
+            this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
         }
     }
     editor.Tile = Tile;

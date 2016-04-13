@@ -3,9 +3,16 @@ const fs = require('fs');
 function readFile() {
     var map_path = __dirname + "/map.json";
     var content = fs.readFileSync(map_path, "utf-8");
+    console.log(content);
     var obj = JSON.parse(content);
+    console.log(obj);
     var mapData = obj.map;
+    console.log(mapData);
     return mapData;
+}
+function writefile(row, col, B) {
+    console.log(row);
+    console.log(col);
 }
 function createMapEditor() {
     var world = new editor.WorldMap();
@@ -29,6 +36,9 @@ function createMapEditor() {
 }
 function onTileClick(tile) {
     console.log(tile);
+    var col = (tile.x) / (editor.GRID_PIXEL_WIDTH);
+    var row = tile.y / editor.GRID_PIXEL_HEIGHT;
+    writefile(row, col, true);
 }
 var mapData = readFile();
 var renderCore = new render.RenderCore();
