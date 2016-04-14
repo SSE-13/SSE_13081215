@@ -46,6 +46,7 @@ function onTileClick(tile) {
         current = 1;
     }
     mapData[row][col] = current;
+    tile.setWalkable(current);
 }
 function createButton() {
     var button = new render.DisplayObjectContainer();

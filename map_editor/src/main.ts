@@ -66,8 +66,8 @@ function onTileClick(tile: editor.Tile) {
        current=1; 
     }
     mapData[row][col] = current;
-    
- 
+    tile.setWalkable(current);
+   
 }
 
 function createButton(){
