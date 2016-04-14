@@ -17,9 +17,14 @@ function readFile() {
 }
 
 
- function writefile(row:number,col:number,B:boolean) {
-    console.log(row);
-    console.log(col);
+ function writefile(row:number,col:number) {
+   // console.log(row);
+   //console.log(col);
+    
+    var map_path =  __dirname + "/map.json"
+    console.log(mapData[row][col]);
+    fs.writeFileSync(map_path,(row,col,1),"utf-8");
+ //   fs.writeFileSync
  }
 
 function createMapEditor() {
@@ -32,7 +37,7 @@ function createMapEditor() {
             var tile = new editor.Tile();
             tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
-            tile.y = row * editor.GRID_PIXEL_HEIGHT
+            tile.y = row * editor.GRID_PIXEL_HEIGHT;
             tile.ownedCol = col;
             tile.ownedRow = row;
             tile.width = editor.GRID_PIXEL_WIDTH;
@@ -50,13 +55,13 @@ function createMapEditor() {
 
 
 function onTileClick(tile: editor.Tile) {
-    console.log(tile);
-    console.log(tile.x);
-    console.log(tile.y);
+    //console.log(tile);
+    //console.log(tile.x);
+    //console.log(tile.y);   
     
-    var col = (tile.x)/(editor.GRID_PIXEL_WIDTH);
-    var row = (tile.y)/(editor.GRID_PIXEL_HEIGHT);
-    writefile(row,col,true);
+    var col = (tile.x)/(tile.width);
+    var row = (tile.y)/(tile.height);
+    writefile(row,col);
 }
 
 

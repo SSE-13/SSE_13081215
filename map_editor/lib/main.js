@@ -10,9 +10,13 @@ function readFile() {
     console.log(mapData);
     return mapData;
 }
-function writefile(row, col, B) {
-    console.log(row);
-    console.log(col);
+function writefile(row, col) {
+    // console.log(row);
+    //console.log(col);
+    var map_path = __dirname + "/map.json";
+    console.log(mapData[row][col]);
+    fs.writeFileSync(map_path, (row, col, 1), "utf-8");
+    //   fs.writeFileSync
 }
 function createMapEditor() {
     var world = new editor.WorldMap();
@@ -35,12 +39,12 @@ function createMapEditor() {
     return world;
 }
 function onTileClick(tile) {
-    console.log(tile);
-    console.log(tile.x);
-    console.log(tile.y);
-    var col = (tile.x) / (editor.GRID_PIXEL_WIDTH);
-    var row = (tile.y) / (editor.GRID_PIXEL_HEIGHT);
-    writefile(row, col, true);
+    //console.log(tile);
+    //console.log(tile.x);
+    //console.log(tile.y);   
+    var col = (tile.x) / (tile.width);
+    var row = (tile.y) / (tile.height);
+    writefile(row, col);
 }
 var mapData = readFile();
 var renderCore = new render.RenderCore();
