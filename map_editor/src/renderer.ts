@@ -113,7 +113,7 @@ module render {
 
 
 
-        color = '#FF0000';
+        color = '#f3e283';
 
         strokeColor = "#000000"
 
@@ -128,12 +128,12 @@ module render {
         }
     }
 
-    class TextField extends DisplayObject {
-
+    export class TextField extends DisplayObject {
+        text = "Hello World !!!";
         render(context: CanvasRenderingContext2D) {
             context.font = "20px Arial";
             context.fillStyle = '#000000';
-            context.fillText('HelloWorld', 0, 20);
+            context.fillText(this.text, 0, 20);
         }
     }
 

@@ -46,12 +46,40 @@ function onTileClick(tile) {
         current = 1;
     }
     mapData[row][col] = current;
-    writefile();
-    mapData = readFile();
 }
+function createButton() {
+    var button = new render.DisplayObjectContainer();
+    var rectangle = new render.Rect();
+    rectangle.width = 50;
+    rectangle.height = 30;
+    // rectangle.color = "##332200";   //?
+    var t = new render.TextField;
+    t.text = "save";
+    t.x = 3;
+    button.addChild(rectangle);
+    button.addChild(t);
+    eventCore.register(button, events.displayObjectRectHitTest, buttonOnClick);
+    return button;
+}
+var buttonOnClick = () => {
+    if (events.displayObjectRectHitTest) {
+        writefile();
+        //  b.children.indexOf(new render.Rect(),0).color = "##662200";
+        mapData = readFile();
+        eventCore.init();
+        renderCore.start(container);
+    }
+};
 var mapData = readFile();
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
 var editor = createMapEditor();
-renderCore.start(editor);
+var b = createButton();
+b.x = 250;
+var container = new render.DisplayObjectContainer();
+container.addChild(editor);
+container.addChild(b);
+container.x = 0;
+container.y = 0;
+renderCore.start(container);

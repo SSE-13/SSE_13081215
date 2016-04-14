@@ -73,7 +73,7 @@ var render;
     class Rect extends DisplayObject {
         constructor(...args) {
             super(...args);
-            this.color = '#FF0000';
+            this.color = '#f3e283';
             this.strokeColor = "#000000";
         }
         render(context) {
@@ -88,12 +88,17 @@ var render;
     }
     render.Rect = Rect;
     class TextField extends DisplayObject {
+        constructor(...args) {
+            super(...args);
+            this.text = "Hello World !!!";
+        }
         render(context) {
             context.font = "20px Arial";
             context.fillStyle = '#000000';
-            context.fillText('HelloWorld', 0, 20);
+            context.fillText(this.text, 0, 20);
         }
     }
+    render.TextField = TextField;
     var imagePool = {};
     function loadResource(imageList, callback) {
         var count = 0;
