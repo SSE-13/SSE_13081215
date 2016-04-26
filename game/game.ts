@@ -20,16 +20,16 @@ module game {
             
             for(var i=0; i < NUM_COLS; i++){
                 for(var j=0; j < NUM_ROWS; j++){
-                    if(mapData[j][i] == 0){
-                        grid.setWalkable(i,j,false);
+                    if(mapData[i][j] == 0){
+                        grid.setWalkable(j,i,false);
                         console.log(i+"   "+j);
                     }else{
-                        grid.setWalkable(i,j,true);
+                        grid.setWalkable(j,i,true);
                     }
                 }
             }
-            
-            console.log(this.grid.toString);
+            alert("map:\n\n" + this.grid.toString());
+           // console.log(this.grid.toString);
         }
 
         render(context: CanvasRenderingContext2D) {
@@ -161,9 +161,9 @@ function onTileClick(tile: editor.Tile) {
        // gridMap.grid.setEndNode(row,col);
         body.run(gridMap.grid,p1,p2);
         
-        renderCore.start(container);
+      /*  renderCore.start(container);
         var ticker = new Ticker();
-        ticker.start([body]);
+        ticker.start([body]);*/
     }
    
    

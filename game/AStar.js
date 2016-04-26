@@ -9,9 +9,21 @@ var astar;
             this.x = x;
             this.y = y;
         }
+        /*
+                toString() {
+                    if (this.inPath) {
+                        return "田"
+                    }
+                    else{
+                        return "口"
+                    }
+                }*/
         Node.prototype.toString = function () {
-            if (this.inPath) {
+            if (!this.walkable) {
                 return "田";
+            }
+            if (this.inPath) {
+                return "★";
             }
             else {
                 return "口";

@@ -1,4 +1,4 @@
-module astar {
+module astar {                           //      class:    Node\Grid\Astar
 
 
     export class Node {
@@ -19,6 +19,7 @@ module astar {
             this.y = y;
         }
 
+/*
         toString() {
             if (this.inPath) {
                 return "田"
@@ -26,6 +27,20 @@ module astar {
             else{
                 return "口"
             }
+        }*/
+        
+        
+        toString(){
+            if(!this.walkable){
+                return "田";
+            }
+            if(this.inPath){
+                return "★"
+            }
+            else{
+                return "口"
+            }
+            
         }
     }
 
