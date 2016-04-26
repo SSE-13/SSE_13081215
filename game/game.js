@@ -7,20 +7,26 @@ var game;
 (function (game) {
     var GRID_PIXEL_WIDTH = 50;
     var GRID_PIXEL_HEIGHT = 50;
-    var NUM_ROWS = 12;
-    var NUM_COLS = 12;
+    var NUM_ROWS = 6;
+    var NUM_COLS = 6;
     var WorldMap = (function (_super) {
         __extends(WorldMap, _super);
         function WorldMap() {
             _super.call(this);
             var grid = new astar.Grid(NUM_COLS, NUM_ROWS);
             this.grid = grid;
-            grid.setWalkable(5, 0, false);
-            grid.setWalkable(5, 1, false);
-            grid.setWalkable(5, 2, false);
-            grid.setWalkable(5, 3, false);
-            grid.setWalkable(5, 4, false);
-            grid.setWalkable(5, 5, false);
+            for (var i = 0; i < NUM_COLS; i++) {
+                for (var j = 0; j < NUM_ROWS; j++) {
+                    if (mapData[j][i] == 0) {
+                        grid.setWalkable(i, j, false);
+                        console.log(i + "   " + j);
+                    }
+                    else {
+                        grid.setWalkable(i, j, true);
+                    }
+                }
+            }
+            console.log(this.grid.toString);
         }
         WorldMap.prototype.render = function (context) {
             context.strokeStyle = '#AAAAAA';
@@ -28,6 +34,7 @@ var game;
                 for (var j = 0; j < NUM_ROWS; j++) {
                     context.beginPath();
                     if (this.grid.getNode(i, j).walkable == false) {
+                        console.log("ffffff");
                         context.fillStyle = '#000000';
                     }
                     else {
@@ -64,9 +71,9 @@ var game;
             _super.apply(this, arguments);
             this.temp = 1;
         }
-        BoyBody.prototype.run = function (grid) {
-            grid.setStartNode(0, 0);
-            grid.setEndNode(10, 8);
+        BoyBody.prototype.run = function (grid, sPoint, ePoint) {
+            grid.setStartNode(sPoint.x, sPoint.y);
+            grid.setEndNode(ePoint.x, ePoint.y);
             var findpath = new astar.AStar();
             findpath.setHeurisitic(findpath.euclidian);
             var result = findpath.findPath(grid);
@@ -98,6 +105,14 @@ var game;
         return BoyBody;
     }(Body));
     game.BoyBody = BoyBody;
+    var Point = (function () {
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        return Point;
+    }());
+    game.Point = Point;
 })(game || (game = {}));
 function createMapEditor() {
     var world = new editor.WorldMap();
@@ -120,17 +135,21 @@ function createMapEditor() {
     return world;
 }
 function onTileClick(tile) {
+    alert("click");
     var col = (tile.x) / (tile.width);
     var row = (tile.y) / (tile.height);
-    console.log(row);
-    console.log(col);
-    console.log(mapData[row][col]);
-    var current = 0;
-    if (mapData[row][col] == 0) {
-        current = 1;
+    //   console.log(tile);
+    if (mapData[row][col] == 1) {
+        gridMap = new game.WorldMap();
+        var p1 = new game.Point(0, 0);
+        var p2 = new game.Point(col, row);
+        // gridMap.grid.setStartNode(0,0);
+        // gridMap.grid.setEndNode(row,col);
+        body.run(gridMap.grid, p1, p2);
+        renderCore.start(container);
+        var ticker = new Ticker();
+        ticker.start([body]);
     }
-    mapData[row][col] = current;
-    tile.setWalkable(current);
 }
 /*
 function readFile() {
@@ -156,28 +175,29 @@ function readFile() {
     return xmlHttp.responseText;
 }
 //var mapData = readFile();
-var mapData = [[0, 0, 0, 0, 0],
-    [1, 1, 1, 1, 0],
-    [0, 0, 1, 1, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0]];
+var mapData = [[1, 0, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1, 1],
+    [1, 0, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1]];
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
-/*
-
-var world = new game.WorldMap();
+var map = createMapEditor();
+var start = new game.Point(2, 2);
+var end = new game.Point(4, 3);
+var gridMap = new game.WorldMap();
 var boyShape = new game.BoyShape();
 var body = new game.BoyBody(boyShape);
-body.run(world.grid);
-
-renderCore.start(world);
-
-var ticker = new Ticker();
-ticker.start([body]);*/
-var map = createMapEditor();
+body.run(gridMap.grid, start, end);
 var container = new render.DisplayObjectContainer();
 container.addChild(map);
+container.addChild(boyShape);
 container.x = 0;
 container.y = 0;
 renderCore.start(container);
+//renderCore.start(boyShape);
+//renderCore.start(container,[map,boyShape]);
+var ticker = new Ticker();
+ticker.start([body]);
