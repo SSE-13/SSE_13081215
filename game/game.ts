@@ -22,7 +22,7 @@ module game {
                 for(var j=0; j < NUM_ROWS; j++){
                     if(mapData[i][j] == 0){
                         grid.setWalkable(j,i,false);
-                        console.log(i+"   "+j);
+                        console.log(j+"   "+i);
                     }else{
                         grid.setWalkable(j,i,true);
                     }
@@ -73,6 +73,7 @@ module game {
         public temp:number = 1;
        
         public run(grid,sPoint:Point,ePoint:Point) {
+            this.temp =1;
             grid.setStartNode(sPoint.x, sPoint.y);
             grid.setEndNode(ePoint.x, ePoint.y);
             var findpath = new astar.AStar();
@@ -101,7 +102,15 @@ module game {
                 }
                 if(this.y < targetY){
                     this.y = (this.y + this.vy * duringTime > targetY) ? targetY : (this.y + this.vy * duringTime);
+                } 
+                if(this.x > targetX){
+                    this.x = (this.x - this.vx * duringTime < targetX) ? targetX : (this.x - this.vx * duringTime);
                 }
+                 if(this.y > targetY){
+                    this.y = (this.y - this.vy * duringTime < targetY) ? targetY : (this.y - this.vy * duringTime);
+                } 
+               
+                
                 if(this.x == targetX && this.y == targetY){
                     this.temp ++;
                 }
@@ -148,41 +157,24 @@ function createMapEditor() {
 }
 
 function onTileClick(tile: editor.Tile) {
-    alert("click");
+   // alert("click");
     var col = (tile.x)/(tile.width);
     var row = (tile.y)/(tile.height);
     
- //   console.log(tile);
+    console.log(tile);
     if(mapData[row][col]==1){
         gridMap=new game.WorldMap();
         var p1=new game.Point(0,0);
         var p2=new game.Point(col,row);
-       // gridMap.grid.setStartNode(0,0);
-       // gridMap.grid.setEndNode(row,col);
         body.run(gridMap.grid,p1,p2);
-        
-      /*  renderCore.start(container);
-        var ticker = new Ticker();
-        ticker.start([body]);*/
+
     }
    
    
 }
 
 
-/*
-function readFile() {
-    var map_path = __dirname + "/map.json"
-    var content = fs.readFileSync(map_path, "utf-8");
-    console.log(content);
-    
-    var obj = JSON.parse(content);
-    console.log(obj);
-    
-    var mapData = obj.map;
-    console.log(mapData);
-    return mapData;
-}*/
+
 var xmlHttp;
 function readFile(){
      xmlHttp = new XMLHttpRequest();
@@ -196,10 +188,10 @@ function readFile(){
 
 
 //var mapData = readFile();
-var mapData = [[1,0,1,1,1,1],
-               [1,0,1,1,1,1],
-               [1,0,1,1,1,1],
-               [1,0,1,1,1,1],
+var mapData = [[1,0,0,1,1,1],
+               [1,1,0,1,1,1],
+               [1,1,0,1,1,1],
+               [1,1,1,1,1,1],
                [1,1,1,1,1,1],
                [1,1,1,1,1,1]];
            
@@ -212,8 +204,8 @@ eventCore.init();
 var map = createMapEditor();
 
 
-var start=new game.Point(2,2);
-var end=new game.Point(4,3);
+var start=new game.Point(3,3);
+var end=new game.Point(5,3);
 var gridMap = new game.WorldMap();
 var boyShape = new game.BoyShape();
 var body = new game.BoyBody(boyShape);
