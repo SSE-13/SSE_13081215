@@ -150,28 +150,34 @@ function readFile() {
     xmlHttp = new XMLHttpRequest();
     var url = "map.json";
     xmlHttp.open("GET", url, true);
-    // xmlHttp.onreadystatechange=ShowResult;
     xmlHttp.send(null);
     alert(xmlHttp.responseText);
+    alert(readFile);
     return xmlHttp.responseText;
 }
-/*
-function ShowResult()
-{
-   if(xmlHttp.readyState==4){
-      if(xmlHttp.status==200){
-          alert("get");
-      }
-   }
-}*/
-var mapData = readFile();
+//var mapData = readFile();
+var mapData = [[0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0]];
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
+/*
+
 var world = new game.WorldMap();
 var boyShape = new game.BoyShape();
 var body = new game.BoyBody(boyShape);
 body.run(world.grid);
+
 renderCore.start(world);
+
 var ticker = new Ticker();
-ticker.start([body]);
+ticker.start([body]);*/
+var map = createMapEditor();
+var container = new render.DisplayObjectContainer();
+container.addChild(map);
+container.x = 0;
+container.y = 0;
+renderCore.start(container);
