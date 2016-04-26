@@ -57,7 +57,7 @@ module astar {                           //      class:    Node\Grid\Astar
             this._numCols = numCols;
             this._numRows = numRows;
             this._nodes = [];
-            for (var i: number = 0; i < this._numCols; i++) {
+            for (var i: number = 0; i < this._numCols; i++) {    //一列一列的初始化
                 this._nodes[i] = [];
                 for (var j: number = 0; j < this._numRows; j++) {
                     this._nodes[i][j] = new Node(i, j);
@@ -262,6 +262,7 @@ module astar {                           //      class:    Node\Grid\Astar
         buildPath(): void {   //从endNode开始往前追索parent
             this._path = new Array();
             var node: Node = this._endNode;
+            node.inPath = true;
             this._path.push(node);
             while (node != this._startNode) {
                 node = node.parent;

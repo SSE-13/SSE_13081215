@@ -70,10 +70,11 @@ var game;
         __extends(BoyBody, _super);
         function BoyBody() {
             _super.apply(this, arguments);
-            this.temp = 1;
+            //    public count:number;
+            this.temp = 0;
         }
         BoyBody.prototype.run = function (grid, sPoint, ePoint) {
-            this.temp = 1;
+            this.temp = 0;
             grid.setStartNode(sPoint.x, sPoint.y);
             grid.setEndNode(ePoint.x, ePoint.y);
             var findpath = new astar.AStar();
@@ -81,7 +82,7 @@ var game;
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
-            this.count = 0;
+            // this.count = 0;
             this.x = GRID_PIXEL_WIDTH * path[0].x;
             this.y = GRID_PIXEL_HEIGHT * path[0].y;
             console.log(path);
@@ -89,7 +90,7 @@ var game;
             alert("\nUse <euclidian> Method to find path:\n\n" + grid.toString());
         };
         BoyBody.prototype.onTicker = function (duringTime) {
-            if (this.temp < this.b_path.length - 1) {
+            if (this.temp < this.b_path.length) {
                 var targetX = this.b_path[this.temp].x * GRID_PIXEL_WIDTH;
                 var targetY = this.b_path[this.temp].y * GRID_PIXEL_HEIGHT;
                 if (this.x < targetX) {
@@ -143,9 +144,8 @@ function createMapEditor() {
     return world;
 }
 function onTileClick(tile) {
-    // alert("click");
-    var col = (tile.x) / (tile.width);
-    var row = (tile.y) / (tile.height);
+    var col = (tile.x) / (tile.width); //第几列
+    var row = (tile.y) / (tile.height); //第几排
     console.log(tile);
     if (mapData[row][col] == 1) {
         gridMap = new game.WorldMap();

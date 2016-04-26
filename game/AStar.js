@@ -209,6 +209,7 @@ var astar;
         AStar.prototype.buildPath = function () {
             this._path = new Array();
             var node = this._endNode;
+            node.inPath = true;
             this._path.push(node);
             while (node != this._startNode) {
                 node = node.parent;

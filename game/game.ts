@@ -68,12 +68,12 @@ module game {
     export class BoyBody extends Body {     //Body类在animation中，用于控制Body的实时位置渲染，Body中有一个displayObject属性
       
         public b_path : Array<astar.Node>;
-        public count:number;
+    //    public count:number;
         
-        public temp:number = 1;
+        public temp:number = 0;
        
         public run(grid,sPoint:Point,ePoint:Point) {
-            this.temp =1;
+            this.temp =0;
             grid.setStartNode(sPoint.x, sPoint.y);
             grid.setEndNode(ePoint.x, ePoint.y);
             var findpath = new astar.AStar();
@@ -81,7 +81,7 @@ module game {
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
-            this.count = 0;
+           // this.count = 0;
           
             
             this.x = GRID_PIXEL_WIDTH * path[0].x;
@@ -94,7 +94,7 @@ module game {
 
         public onTicker(duringTime) {
             
-            if(this.temp < this.b_path.length - 1){
+            if(this.temp < this.b_path.length ){
                 var targetX = this.b_path[this.temp].x * GRID_PIXEL_WIDTH;
                 var targetY = this.b_path[this.temp].y * GRID_PIXEL_HEIGHT;
                 if(this.x < targetX){
@@ -110,7 +110,6 @@ module game {
                     this.y = (this.y - this.vy * duringTime < targetY) ? targetY : (this.y - this.vy * duringTime);
                 } 
                
-                
                 if(this.x == targetX && this.y == targetY){
                     this.temp ++;
                 }
@@ -157,9 +156,9 @@ function createMapEditor() {
 }
 
 function onTileClick(tile: editor.Tile) {
-   // alert("click");
-    var col = (tile.x)/(tile.width);
-    var row = (tile.y)/(tile.height);
+
+    var col = (tile.x)/(tile.width);   //第几列
+    var row = (tile.y)/(tile.height);  //第几排
     
     console.log(tile);
     if(mapData[row][col]==1){
