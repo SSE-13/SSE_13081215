@@ -33,6 +33,10 @@ module editor {
 
         public ownedRow: number;
         public ownedCol: number;
+        
+        public xPosition: number;
+        public yPosition: number;
+        
 
 
         constructor() {
