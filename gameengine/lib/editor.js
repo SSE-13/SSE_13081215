@@ -39,48 +39,33 @@ var editor;
             _super.call(this);
             var row = new render.TextField;
             row.text = "行：";
-            row.width = 100;
-            row.height = 30;
+            //row.width = 100;
+            //row.height = 30;
             row.x = 0;
             row.y = 100;
             this.addChild(row);
             var col = new render.TextField;
             col.text = "列: ";
-            col.width = 100;
-            col.height = 30;
+            //col.width = 100;
+            //col.height = 30;
             col.x = 0;
             col.y = 200;
             this.addChild(col);
             var isWalk = new render.TextField;
             isWalk.text = "是否可以走: ";
-            isWalk.width = 100;
-            isWalk.height = 30;
+            //isWalk.width = 100;
+            //isWalk.height = 30;
             isWalk.x = 0;
             isWalk.y = 300;
             this.addChild(isWalk);
-            var source = new render.TextField;
-            source.text = "网格素材: ";
-            source.width = 100;
-            source.height = 30;
-            source.x = 0;
-            source.y = 400;
-            this.addChild(source);
-            var sourcebutton = new ui.Button;
-            sourcebutton.width = 100;
-            sourcebutton.height = 30;
-            sourcebutton.x = 0;
-            sourcebutton.y = 420;
-            this.addChild(sourcebutton);
-            sourcebutton.onClick = function () {
-                if (sourcebutton.background.color = "#0000FF") {
-                    sourcebutton.background.color = "FF0000";
-                }
-                /*  else{
-                  sourcebutton.background.color = "#0000FF";
-                  sourcebutton.judge = true;
-                  }
-                  */
-            };
+            var xtext = new render.TextField;
+            var ytext = new render.TextField;
+            xtext.x = 30;
+            xtext.y = 0;
+            ytext.x = 30;
+            ytext.y = 100;
+            this.addChild(xtext);
+            this.addChild(ytext);
             var button = new ui.Button();
             button.text = " ";
             button.width = 100;
@@ -88,33 +73,46 @@ var editor;
             button.x = 0;
             button.y = 320;
             this.addChild(button);
-            button.onClick = function () {
-                if (button.background.color = "#0000FF") {
+            /*button.onClick = ()=> {
+                if(button.background.color = "#0000FF"){
                     button.background.color = "#FF0000";
                 }
-                else {
+                else{
                     button.background.color = "#0000FF";
                 }
-            };
-            /*var source = new render.TextField;
+                }
+                */
+            var source = new render.TextField;
             source.text = "网格素材: ";
-            source.width = 100;
-            source.height = 30;
+            //source.width = 100;
+            //source.height = 30;
             source.x = 0;
             source.y = 400;
             this.addChild(source);
-            
             var sourcebutton = new ui.Button;
             sourcebutton.width = 100;
             sourcebutton.height = 30;
             sourcebutton.x = 0;
             sourcebutton.y = 420;
             this.addChild(sourcebutton);
-            sourcebutton.onClick = () =>{
-                
-            }
-            */
-            //  alert("button cliked");
+            /* sourcebutton.onClick = () =>{
+                 if(sourcebutton.background.color = "#0000FF"){
+                     sourcebutton.background.color = "FF0000";
+                     //sourcebutton.judge = false;
+                 }
+                 else{
+                 sourcebutton.background.color = "#0000FF";
+                 sourcebutton.judge = true;
+                 }
+                 */
+            var save = new render.Bitmap();
+            save.x = 0;
+            save.y = 450;
+            this.addChild(save);
+            var undo = new render.Bitmap();
+            undo.x = 0;
+            undo.y = 500;
+            this.addChild(undo);
         }
         return ControlPanel;
     }(render.DisplayObjectContainer));
