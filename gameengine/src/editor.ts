@@ -28,7 +28,7 @@ module editor {
     }
 
 
-    export class Tile extends render.Rect {
+    export class Tile extends render.Bitmap {
 
 
         public ownedRow: number;
@@ -43,19 +43,23 @@ module editor {
         public judge: boolean;
         
 
+        
+
 
         constructor() {
             super();
         }
 
         public setWalkable(value) {
-            this.color = value ? "#0000FF" : "#FF0000";
+            //this.color = value ? "#0000FF" : "#FF0000";
+            this.judge = value ? true:false;
         }
     }
     
     
     export class ControlPanel extends render.DisplayObjectContainer {
         
+        picSource:String;
         
         constructor(mapData,mapEditor){
             super();
@@ -103,15 +107,23 @@ module editor {
             button.y = 320;
             this.addChild(button);
             
-            /*button.onClick = ()=> {
-                if(button.background.color = "#0000FF"){
+            
+            button.onClick = ()=> {
+                 var x = parseInt(xtext.text) - 1;
+                 var y = parseInt(ytext.text) - 1;
+                 var tile = new Tile();
+                 tile = mapEditor.children[x * mapData[0].length + y];
+                 if (tile.judge) {
                     button.background.color = "#FF0000";
+                    button.text = "否";
+                    mapData[y][x] = 0;
                 }
-                else{
+                else {
                     button.background.color = "#0000FF";
-                }
-                }
-                */
+                    button.text = "是";
+                    mapData[y][x] = 1;
+                } 
+              
                 
             var source = new render.TextField;
             source.text = "网格素材: ";
@@ -128,16 +140,14 @@ module editor {
             sourcebutton.y = 420;
             this.addChild(sourcebutton);
             
-           /* sourcebutton.onClick = () =>{
-                if(sourcebutton.background.color = "#0000FF"){
-                    sourcebutton.background.color = "FF0000";
-                    //sourcebutton.judge = false;
-                }
-                else{
-                sourcebutton.background.color = "#0000FF";
-                sourcebutton.judge = true;
-                }
-                */
+             sourcebutton.onClick = () =>{
+                 var a = parseInt(xtext.text) - 1;
+                 var b = parseInt(ytext.text) - 1;
+                 var tile = new Tile();
+                 tile = mapEditor.children[a * mapData[0].length + b];
+                 
+                
+               
                 
                 var save = new render.Bitmap();
                 save.x = 0;
@@ -148,36 +158,15 @@ module editor {
                 undo.x = 0;
                 undo.y = 500;
                 this.addChild(undo);
-            }
-            
-           
-              
-                    
-            
-            /*var source = new render.TextField;
-            source.text = "网格素材: ";
-            source.width = 100;
-            source.height = 30;
-            source.x = 0;
-            source.y = 400;
-            this.addChild(source);
-            
-            var sourcebutton = new ui.Button;
-            sourcebutton.width = 100;
-            sourcebutton.height = 30;
-            sourcebutton.x = 0;
-            sourcebutton.y = 420;
-            this.addChild(sourcebutton);
-            sourcebutton.onClick = () =>{
                 
-            }
-            */
-              //  alert("button cliked");
-            }
+                
             
+            }
+            }
+        }
             
             
             
         }
-        
+}
 

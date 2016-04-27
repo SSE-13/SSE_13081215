@@ -23,6 +23,7 @@ function createMapEditor() {
             tile.xtext = tile.xPosition.toString();
             tile.ytext = tile.yPosition.toString();
             
+            tile.Resource = pic[picData[row][col]];
             
             world.addChild(tile);
 

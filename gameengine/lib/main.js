@@ -16,6 +16,7 @@ function createMapEditor() {
             tile.yPosition = tile.y / editor.GRID_PIXEL_HEIGHT;
             tile.xtext = tile.xPosition.toString();
             tile.ytext = tile.yPosition.toString();
+            tile.Resource = pic[picData[row][col]];
             world.addChild(tile);
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
