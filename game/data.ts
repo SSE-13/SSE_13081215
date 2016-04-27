@@ -3,8 +3,8 @@ module data {
     export class Storage {
 
         private static _instance: Storage;
-        public s_layer0;
-        public s_layer1;
+        public s_layer0;       //background  设置可走与不可走
+        public s_layer1;       //Prop  添加道具
         
         public static getInstance(): Storage {
             if (Storage._instance == null) {

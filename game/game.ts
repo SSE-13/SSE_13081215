@@ -5,9 +5,9 @@ module game {
 
     const GRID_PIXEL_HEIGHT = 50;
 
-    const NUM_ROWS = 6;
+    const NUM_ROWS = 10;
 
-    const NUM_COLS = 6;
+    const NUM_COLS = 10;
 
     export class WorldMap extends render.DisplayObject {
 
@@ -52,11 +52,11 @@ module game {
         }
     }
 
-    export class BoyShape extends render.DisplayObject {
+    export class BoyShape extends render.Bitmap {
         
         render(context: CanvasRenderingContext2D) {
             context.beginPath()
-            context.fillStyle = '#00FFFF';
+            context.fillStyle = '#fff799';
             context.arc(GRID_PIXEL_WIDTH / 2, GRID_PIXEL_HEIGHT / 2, Math.min(GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT) / 2 - 5, 0 , Math.PI * 2);
             context.fill();
             context.closePath();
@@ -180,18 +180,21 @@ function onTileClick(tile: editor.Tile) {
     }
 }
 
-
-
-var mapData = [[1,1,0,1,0,1],
-              [1,1,0,1,1,1],
-              [1,1,0,0,0,1],
-              [1,1,1,1,1,1],
-              [1,0,0,0,0,0],
-              [1,1,1,1,1,1]];     
-
+//可走与不可走
+var mapData =[[1,1,0,1,0,1,1,1,1,1],               
+              [1,1,0,1,1,1,1,1,1,1],
+              [1,1,0,0,0,1,1,1,1,1],
+              [1,1,1,1,1,1,1,1,1,1],
+              [1,0,0,0,0,0,0,0,0,0],
+              [1,1,1,1,1,1,1,1,1,1],
+              [1,1,1,1,0,1,1,1,1,1],
+              [1,1,1,1,0,1,1,1,1,1],
+              [1,1,1,1,0,1,1,1,1,1],
+              [1,1,1,1,0,1,1,1,1,1]] ;             
+              
       
-var background;
-var prop;        
+var background;    //可走与不可走
+var prop;          //道具
 var storage = data.Storage.getInstance();  
 
 
@@ -203,7 +206,9 @@ var onLoadScene=() =>{
     prop = createMapEditor(storage.s_layer0,false);
     container.addChild(background);
     container.addChild(prop);
+    boyShape.source = "player.png";
     container.addChild(boyShape);
+
 }   
  
 storage.GetJson(onLoadScene);
@@ -214,8 +219,8 @@ var eventCore = new events.EventCore();
 eventCore.init();
 
 
-var start=new game.Point(3,3);
-var end=new game.Point(5,3);
+var start=new game.Point(0,0);
+var end=new game.Point(0,3);
 var gridMap = new game.WorldMap();
 
 var boyShape = new game.BoyShape();
@@ -231,7 +236,7 @@ container.addChild(boyShape);
 container.x = 50;
 container.y = 0;
 
-renderCore.start(container,["0.jpg","1.jpg","2.png","3.png"]);                 //"0.jpg":grass   "1.jpg":wall         "2.png":transparent   "3.png":zombie
+renderCore.start(container,["player.png","0.jpg","1.jpg","2.png","3.png"]);                 //"0.jpg":grass   "1.jpg":wall         "2.png":transparent   "3.png":zombie
 
 var ticker = new Ticker();
 ticker.start([body]);
