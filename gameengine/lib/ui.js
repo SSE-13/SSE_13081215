@@ -11,13 +11,15 @@ var ui;
         function Button() {
             var _this = this;
             _super.call(this);
-            this._text = "label";
+            this._text = " ";
             this.background = new render.Rect();
             this.background.width = this.width;
             this.background.height = this.height;
             this.label = new render.TextField();
             this.label.width = this.width;
             this.label.height = this.height;
+            this.label.x = 0;
+            this.label.y = 0;
             this.label.textAlign = "left";
             this.label.text = this.text;
             this.addChild(this.background);

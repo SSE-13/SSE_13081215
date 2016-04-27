@@ -33,9 +33,9 @@ module ui {
         }
 
 
-        private background: render.Rect;
+        public background: render.Rect;
         private label: render.TextField;
-        private _text: string = "label";
+        private _text: string = " ";
 
 
 
@@ -48,6 +48,8 @@ module ui {
             this.label = new render.TextField();
             this.label.width = this.width;
             this.label.height = this.height;
+            this.label.x = 0;
+            this.label.y = 0;
             this.label.textAlign = "left";
             this.label.text = this.text;
             this.addChild(this.background);

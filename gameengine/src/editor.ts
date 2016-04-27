@@ -91,8 +91,14 @@ module editor {
             button.y = 300
             this.addChild(button);
             button.onClick = ()=> {
+                if(button.background.color = "#0000FF"){
+                    button.background.color = "#FF0000";
+                }
+                else{
+                    button.background.color = "#0000FF";
+                }
+                }
               
-            }
                     
             
             var source = new render.TextField;
