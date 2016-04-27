@@ -28,8 +28,8 @@ var Ticker = (function () {
 }());
 var Body = (function () {
     function Body(displayObject) {
-        this.vx = 5;
-        this.vy = 5;
+        this.vx = 10;
+        this.vy = 10;
         this.x = 0;
         this.y = 0;
         this.width = 0;

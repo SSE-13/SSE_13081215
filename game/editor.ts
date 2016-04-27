@@ -36,10 +36,12 @@ module editor {                       //  class:   WorldMap\Tile
         }
 
         public setWalkable(value) {
-            
             this.source = value + ".jpg";
           //  this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
-          
+        }
+        
+        public setProp(value) {
+            this.source = value + ".png";
         }
     }
 }

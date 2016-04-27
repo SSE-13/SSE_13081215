@@ -31,6 +31,9 @@ var editor;
             this.source = value + ".jpg";
             //  this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
         };
+        Tile.prototype.setProp = function (value) {
+            this.source = value + ".png";
+        };
         return Tile;
     }(render.Bitmap));
     editor.Tile = Tile;

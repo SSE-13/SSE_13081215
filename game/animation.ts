@@ -32,8 +32,8 @@ class Ticker {
 
 class Body {
 
-    vx = 5;
-    vy = 5;
+    vx = 10;
+    vy = 10;
     x = 0;
     y = 0;
     width = 0;

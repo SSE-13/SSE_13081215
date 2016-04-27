@@ -22,13 +22,12 @@ module game {
                 for(var j=0; j < NUM_ROWS; j++){
                     if(mapData[i][j] == 0){
                         grid.setWalkable(j,i,false);
-                        console.log(j+"   "+i);
+                        //console.log(j+"   "+i);
                     }else{
                         grid.setWalkable(j,i,true);
                     }
                 }
             }
-           // alert("map:\n\n" + this.grid.toString());
         }
 
         render(context: CanvasRenderingContext2D) {
@@ -129,7 +128,7 @@ module game {
 }
 
 
-function createMapEditor(storage_data) {
+function createMapEditor(storage_data,isBackgroundOrProp:Boolean) {
     var world = new editor.WorldMap();
     var rows = storage_data.length;
     var cols = storage_data[0].length;
@@ -137,8 +136,13 @@ function createMapEditor(storage_data) {
     for (var col = 0; col < rows; col++) {    
         for (var row = 0; row < cols; row++) { 
             var tile = new editor.Tile();
-            
-            tile.setWalkable(storage.s_layer1[row][col]);
+            if(isBackgroundOrProp){
+                 tile.setWalkable(storage.s_layer1[row][col]);
+            }
+            else{
+                 tile.setProp(storage.s_layer0[row][col]);
+            }          
+           
             tile.x = col * editor.GRID_PIXEL_WIDTH;
             tile.y = row * editor.GRID_PIXEL_HEIGHT;
             tile.ownedCol = col;
@@ -154,6 +158,8 @@ function createMapEditor(storage_data) {
     return world;
 }
 
+
+
 function onTileClick(tile: editor.Tile) {
 
     var col = (tile.x)/(tile.width);   //第几列
@@ -165,7 +171,7 @@ function onTileClick(tile: editor.Tile) {
         
         var x=Math.round(body.y/50);
         var y=Math.round(body.x/50);
-        console.log("hhhhhhh"+x+","+y);
+        console.log("target： "+x+","+y);
         
         var p1=new game.Point(y,x);
         var p2=new game.Point(col,row);
@@ -176,33 +182,36 @@ function onTileClick(tile: editor.Tile) {
 
 
 
-var mapData = [[1,1,0,1,1,1],
-               [1,1,0,1,1,1],
-               [1,1,0,1,0,1],
-               [1,1,1,1,1,1],
-               [1,0,0,0,0,0],
-               [1,1,1,1,1,1]];
-               
-var layer1;        
+var mapData = [[1,1,0,1,0,1],
+              [1,1,0,1,1,1],
+              [1,1,0,0,0,1],
+              [1,1,1,1,1,1],
+              [1,0,0,0,0,0],
+              [1,1,1,1,1,1]];     
+
+      
+var background;
+var prop;        
 var storage = data.Storage.getInstance();  
 
 
 var onLoadScene=() =>{
-    layer1 = createMapEditor(storage.s_layer1);
-    container.addChild(layer1);
+    mapData=storage.s_layer1;
+    console.log(mapData);
     
+    background = createMapEditor(storage.s_layer1,true);
+    prop = createMapEditor(storage.s_layer0,false);
+    container.addChild(background);
+    container.addChild(prop);
     container.addChild(boyShape);
-    console.log("onLoadScene输出数据："+storage.s_layer1);
 }   
  
 storage.GetJson(onLoadScene);
-console.log("输出数据："+storage.s_layer1);
      
            
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
-
 
 
 var start=new game.Point(3,3);
@@ -222,7 +231,7 @@ container.addChild(boyShape);
 container.x = 50;
 container.y = 0;
 
-renderCore.start(container,["0.jpg","1.jpg"]);
+renderCore.start(container,["0.jpg","1.jpg","2.png","3.png"]);                 //"0.jpg":grass   "1.jpg":wall         "2.png":transparent   "3.png":zombie
 
 var ticker = new Ticker();
 ticker.start([body]);
