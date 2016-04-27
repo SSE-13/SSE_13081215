@@ -38,12 +38,14 @@ var editor;
         function ControlPanel() {
             _super.call(this);
             var button = new ui.Button();
-            button.text = "Hello";
+            //button.text = "Hello";
             button.width = 100;
             button.height = 30;
+            button.x = 0;
+            button.y = 300;
             this.addChild(button);
             button.onClick = function () {
-                alert("button cliked");
+                //  alert("button cliked");
             };
             var row = new render.TextField;
             row.text = "行：";
