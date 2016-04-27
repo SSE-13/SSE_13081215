@@ -72,6 +72,14 @@ var editor;
             sourcebutton.y = 420;
             this.addChild(sourcebutton);
             sourcebutton.onClick = function () {
+                if (sourcebutton.background.color = "#0000FF") {
+                    sourcebutton.background.color = "FF0000";
+                    sourcebutton.judge = false;
+                }
+                else {
+                    sourcebutton.background.color = "#0000FF";
+                    sourcebutton.judge = true;
+                }
             };
             var button = new ui.Button();
             button.text = " ";

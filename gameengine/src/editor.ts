@@ -100,6 +100,14 @@ module editor {
             sourcebutton.y = 420;
             this.addChild(sourcebutton);
             sourcebutton.onClick = () =>{
+                if(sourcebutton.background.color = "#0000FF"){
+                    sourcebutton.background.color = "FF0000";
+                    sourcebutton.judge = false;
+                }
+                else{
+                sourcebutton.background.color = "#0000FF";
+                sourcebutton.judge = true;
+                }
                 
             }
             
