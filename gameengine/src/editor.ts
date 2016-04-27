@@ -54,16 +54,7 @@ module editor {
         constructor(){
             super();
             
-            var button = new ui.Button();
-            button.text = " ";
-            button.width = 100;
-            button.height = 30;
-            button.x = 0;
-            button.y = 300
-            this.addChild(button);
-            button.onClick = ()=> {
-              //  alert("button cliked");
-            }
+            
             
             var row = new render.TextField;
             row.text = "行：";
@@ -89,10 +80,42 @@ module editor {
             isWalk.y = 300;
             this.addChild(isWalk);
             
+            var button = new ui.Button();
+            button.text = " ";
+            button.width = 100;
+            button.height = 30;
+            button.x = 0;
+            button.y = 300
+            this.addChild(button);
+            button.onClick = ()=> {
+              
+            }
+                    
+            
+            var source = new render.TextField;
+            source.text = "网格素材: ";
+            source.width = 100;
+            source.height = 30;
+            source.x = 0;
+            source.y = 400;
+            this.addChild(source);
+            
+            var sourcebutton = new ui.Button;
+            sourcebutton.width = 100;
+            sourcebutton.height = 30;
+            sourcebutton.x = 0;
+            sourcebutton.y = 420;
+            this.addChild(sourcebutton);
+            sourcebutton.onClick = () =>{
+                
+            }
+              //  alert("button cliked");
+            }
+            
             
             
             
         }
         
     }
-}
+
