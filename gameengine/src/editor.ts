@@ -37,6 +37,9 @@ module editor {
         public xPosition: number;
         public yPosition: number;
         
+        public xtext: String;
+        public ytext: String;
+        
 
 
         constructor() {
