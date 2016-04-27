@@ -99,11 +99,11 @@ var ui;
             this.radiobuttons.forEach(function (element) {
                 if (element == radiobutton) {
                     element.checked = true;
-                    element.setColor("#6fa8dc");
+                    element.setColor("#CC9999");
                 }
                 else {
                     element.checked = false;
-                    element.setColor("#b1c8dd");
+                    element.setColor("#FF0000");
                 }
             });
         };

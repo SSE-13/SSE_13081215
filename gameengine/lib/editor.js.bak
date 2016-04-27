@@ -93,7 +93,7 @@ var editor;
             walkableradio.radiobuttons[0].text = "可走";
             walkableradio.radiobuttons[1].text = "不可走";
             this.currentmaterial = materialradio.setMaterial;
-            var submit = new ui.Button("确认");
+            var submit = new ui.Button("提交");
             submit.height = 50;
             submit.y = 230;
             var save = new ui.Button("保存");
@@ -111,11 +111,11 @@ var editor;
                     information.Update(child);
                 }
                 else
-                    alert("请先选择网格！");
+                    alert("请先选择网格");
             };
             save.onClick = function () {
                 storage.saveFile(mapEditor);
-                alert("保存成功！");
+                alert("保存成功");
             };
             walkableradio.x = 120;
             this.addChild(materialradio);

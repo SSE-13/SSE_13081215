@@ -165,10 +165,10 @@ module ui {
             this.informations[i].textAlign="left";
             this.addChild(this.informations[i]);
         }
-            this.informations[0].text="行:暂无";
-            this.informations[1].text="列:暂无";
-            this.informations[2].text="可走性:暂无";
-            this.informations[3].text="素材:暂无";
+            this.informations[0].text="行:--";
+            this.informations[1].text="列:--";
+            this.informations[2].text="可走性:--";
+            this.informations[3].text="素材:--";
             
             
             

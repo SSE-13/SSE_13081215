@@ -119,7 +119,7 @@ module editor {
             
             this.currentmaterial=materialradio.setMaterial;
 
-            var submit=new ui.Button("提交");
+            var submit=new ui.Button("确认");
             submit.height=50;
             submit.y=230;
             var save=new ui.Button("保存");
@@ -141,14 +141,14 @@ module editor {
                 information.Update(child);
                 }
                 else
-                alert("请先选择网格");
+                alert("请先选择网格！");
                 
 
                 
             }
             save.onClick=()=>{
                 storage.saveFile(mapEditor);
-                alert("保存成功");
+                alert("保存成功！");
             }
             walkableradio.x=120;
             

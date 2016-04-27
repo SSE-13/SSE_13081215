@@ -110,12 +110,12 @@ module ui {
             this.radiobuttons.forEach(element => {
                 if (element==radiobutton) {
                     element.checked=true;
-                    element.setColor("#CC9999");
+                    element.setColor("#6fa8dc");
 
                 }
                 else {
                     element.checked=false;
-                    element.setColor("#FF0000");
+                    element.setColor("#b1c8dd");
                 }
             });
         }

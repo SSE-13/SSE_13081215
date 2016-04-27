@@ -69,15 +69,15 @@ module editor {
 
 
         constructor() {
-            super("Red.jpg","Tile");
+            super("cement.jpg","Tile");
         }
 
         public setWalkable(value) {
             if(value==0){
-                this.material=new Material("Red.jpg","red",value);
+                this.material=new Material("cement.jpg","cement",value);
             }
             else{
-                this.material=new Material("Black.jpg","black",value);
+                this.material=new Material("water.jpg","water",value);
             }
             this.source=this.material.material.source;
             this.name=this.material.material.name;
@@ -119,7 +119,7 @@ module editor {
             
             this.currentmaterial=materialradio.setMaterial;
 
-            var submit=new ui.Button("提交");
+            var submit=new ui.Button("确认");
             submit.height=50;
             submit.y=230;
             var save=new ui.Button("保存");
@@ -141,7 +141,7 @@ module editor {
                 information.Update(child);
                 }
                 else
-                alert("请先选择网格");
+                alert("请先选择网格！");
                 
 
                 
