@@ -1,4 +1,4 @@
-module editor {
+module editor {                       //  class:   WorldMap\Tile
 
 
     export const GRID_PIXEL_WIDTH = 50;

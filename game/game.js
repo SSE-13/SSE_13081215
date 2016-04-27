@@ -26,8 +26,7 @@ var game;
                     }
                 }
             }
-            alert("map:\n\n" + this.grid.toString());
-            // console.log(this.grid.toString);
+            // alert("map:\n\n" + this.grid.toString());
         }
         WorldMap.prototype.render = function (context) {
             context.strokeStyle = '#AAAAAA';
@@ -70,7 +69,6 @@ var game;
         __extends(BoyBody, _super);
         function BoyBody() {
             _super.apply(this, arguments);
-            //    public count:number;
             this.temp = 0;
         }
         BoyBody.prototype.run = function (grid, sPoint, ePoint) {
@@ -82,7 +80,6 @@ var game;
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
-            // this.count = 0;
             this.x = GRID_PIXEL_WIDTH * path[0].x;
             this.y = GRID_PIXEL_HEIGHT * path[0].y;
             console.log(path);
@@ -149,7 +146,10 @@ function onTileClick(tile) {
     console.log(tile);
     if (mapData[row][col] == 1) {
         gridMap = new game.WorldMap();
-        var p1 = new game.Point(0, 0);
+        var x = Math.round(body.y / 50);
+        var y = Math.round(body.x / 50);
+        console.log("hhhhhhh" + x + "," + y);
+        var p1 = new game.Point(y, x);
         var p2 = new game.Point(col, row);
         body.run(gridMap.grid, p1, p2);
     }
@@ -165,11 +165,11 @@ function readFile() {
     return xmlHttp.responseText;
 }
 //var mapData = readFile();
-var mapData = [[1, 0, 0, 1, 1, 1],
+var mapData = [[1, 1, 0, 1, 1, 1],
     [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
+    [1, 1, 0, 1, 0, 1],
     [1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0],
     [1, 1, 1, 1, 1, 1]];
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();

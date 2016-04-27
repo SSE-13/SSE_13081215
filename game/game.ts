@@ -28,8 +28,7 @@ module game {
                     }
                 }
             }
-            alert("map:\n\n" + this.grid.toString());
-           // console.log(this.grid.toString);
+           // alert("map:\n\n" + this.grid.toString());
         }
 
         render(context: CanvasRenderingContext2D) {
@@ -68,7 +67,7 @@ module game {
     export class BoyBody extends Body {     //Body类在animation中，用于控制Body的实时位置渲染，Body中有一个displayObject属性
       
         public b_path : Array<astar.Node>;
-    //    public count:number;
+
         
         public temp:number = 0;
        
@@ -81,8 +80,7 @@ module game {
             var result = findpath.findPath(grid);
             var path = findpath._path;
             this.b_path = path;
-           // this.count = 0;
-          
+         
             
             this.x = GRID_PIXEL_WIDTH * path[0].x;
             this.y = GRID_PIXEL_HEIGHT * path[0].y;
@@ -163,13 +161,16 @@ function onTileClick(tile: editor.Tile) {
     console.log(tile);
     if(mapData[row][col]==1){
         gridMap=new game.WorldMap();
-        var p1=new game.Point(0,0);
+        
+        var x=Math.round(body.y/50);
+        var y=Math.round(body.x/50);
+        console.log("hhhhhhh"+x+","+y);
+        
+        var p1=new game.Point(y,x);
         var p2=new game.Point(col,row);
         body.run(gridMap.grid,p1,p2);
 
     }
-   
-   
 }
 
 
@@ -187,11 +188,11 @@ function readFile(){
 
 
 //var mapData = readFile();
-var mapData = [[1,0,0,1,1,1],
+var mapData = [[1,1,0,1,1,1],
                [1,1,0,1,1,1],
-               [1,1,0,1,1,1],
+               [1,1,0,1,0,1],
                [1,1,1,1,1,1],
-               [1,1,1,1,1,1],
+               [1,0,0,0,0,0],
                [1,1,1,1,1,1]];
            
 var renderCore = new render.RenderCore();
