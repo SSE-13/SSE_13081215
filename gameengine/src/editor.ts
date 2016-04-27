@@ -40,6 +40,8 @@ module editor {
         public xtext: String;
         public ytext: String;
         
+        public judge: boolean;
+        
 
 
         constructor() {
@@ -83,24 +85,6 @@ module editor {
             isWalk.y = 300;
             this.addChild(isWalk);
             
-            var button = new ui.Button();
-            button.text = " ";
-            button.width = 100;
-            button.height = 30;
-            button.x = 0;
-            button.y = 300
-            this.addChild(button);
-            button.onClick = ()=> {
-                if(button.background.color = "#0000FF"){
-                    button.background.color = "#FF0000";
-                }
-                else{
-                    button.background.color = "#0000FF";
-                }
-                }
-              
-                    
-            
             var source = new render.TextField;
             source.text = "网格素材: ";
             source.width = 100;
@@ -118,6 +102,43 @@ module editor {
             sourcebutton.onClick = () =>{
                 
             }
+            
+            var button = new ui.Button();
+            button.text = " ";
+            button.width = 100;
+            button.height = 30;
+            button.x = 0;
+            button.y = 320;
+            this.addChild(button);
+            button.onClick = ()=> {
+                if(button.background.color = "#0000FF"){
+                    button.background.color = "#FF0000";
+                }
+                else{
+                    button.background.color = "#0000FF";
+                }
+                }
+              
+                    
+            
+            /*var source = new render.TextField;
+            source.text = "网格素材: ";
+            source.width = 100;
+            source.height = 30;
+            source.x = 0;
+            source.y = 400;
+            this.addChild(source);
+            
+            var sourcebutton = new ui.Button;
+            sourcebutton.width = 100;
+            sourcebutton.height = 30;
+            sourcebutton.x = 0;
+            sourcebutton.y = 420;
+            this.addChild(sourcebutton);
+            sourcebutton.onClick = () =>{
+                
+            }
+            */
               //  alert("button cliked");
             }
             

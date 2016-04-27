@@ -36,6 +36,8 @@ module ui {
         public background: render.Rect;
         private label: render.TextField;
         private _text: string = " ";
+        
+        public judge: boolean;
 
 
 
