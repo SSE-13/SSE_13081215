@@ -67,8 +67,24 @@ module editor {
             row.width = 100;
             row.height = 30;
             row.x = 0;
-            row.y = 0;
+            row.y = 100;
             this.addChild(row);
+            
+            var col = new render.TextField;
+            col.text = "列: ";
+            col.width = 100;
+            col.height = 30;
+            col.x = 0;
+            col.y = 200;
+            this.addChild(col);
+            
+            var isWalk = new render.TextField;
+            isWalk.text = "是否可以走: ";
+            isWalk.width = 100;
+            isWalk.height = 30;
+            isWalk.x = 0;
+            isWalk.y = 300;
+            this.addChild(isWalk);
             
             
             
