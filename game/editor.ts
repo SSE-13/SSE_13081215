@@ -26,7 +26,7 @@ module editor {                       //  class:   WorldMap\Tile
     }
 
 
-    export class Tile extends render.Rect {
+    export class Tile extends render.Bitmap {
         
         public ownedRow: number;
         public ownedCol: number;
@@ -36,7 +36,10 @@ module editor {                       //  class:   WorldMap\Tile
         }
 
         public setWalkable(value) {
-            this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
+            
+            this.source = value + ".jpg";
+          //  this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
+          
         }
     }
 }

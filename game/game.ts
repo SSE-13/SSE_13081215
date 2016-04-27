@@ -129,15 +129,16 @@ module game {
 }
 
 
-function createMapEditor() {
+function createMapEditor(storage_data) {
     var world = new editor.WorldMap();
-    var rows = mapData.length;
-    var cols = mapData[0].length;
+    var rows = storage_data.length;
+    var cols = storage_data[0].length;
 
     for (var col = 0; col < rows; col++) {    
         for (var row = 0; row < cols; row++) { 
             var tile = new editor.Tile();
-            tile.setWalkable(mapData[row][col]);
+            
+            tile.setWalkable(storage.s_layer1[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
             tile.y = row * editor.GRID_PIXEL_HEIGHT;
             tile.ownedCol = col;
@@ -175,25 +176,28 @@ function onTileClick(tile: editor.Tile) {
 
 
 
-var xmlHttp;
-function readFile(){
-     xmlHttp = new XMLHttpRequest();
-     var url="map.json";
-     xmlHttp.open("GET",url,true);
-     xmlHttp.send(null);
-     alert(xmlHttp.responseText);
-     alert(readFile);
-     return xmlHttp.responseText;
-}
-
-
-//var mapData = readFile();
 var mapData = [[1,1,0,1,1,1],
                [1,1,0,1,1,1],
                [1,1,0,1,0,1],
                [1,1,1,1,1,1],
                [1,0,0,0,0,0],
                [1,1,1,1,1,1]];
+               
+var layer1;        
+var storage = data.Storage.getInstance();  
+
+
+var onLoadScene=() =>{
+    layer1 = createMapEditor(storage.s_layer1);
+    container.addChild(layer1);
+    
+    container.addChild(boyShape);
+    console.log("onLoadScene输出数据："+storage.s_layer1);
+}   
+ 
+storage.GetJson(onLoadScene);
+console.log("输出数据："+storage.s_layer1);
+     
            
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
@@ -201,12 +205,10 @@ eventCore.init();
 
 
 
-var map = createMapEditor();
-
-
 var start=new game.Point(3,3);
 var end=new game.Point(5,3);
 var gridMap = new game.WorldMap();
+
 var boyShape = new game.BoyShape();
 var body = new game.BoyBody(boyShape);
 
@@ -215,14 +217,12 @@ body.run(gridMap.grid,start,end);
 
 
 var container = new render.DisplayObjectContainer();
-container.addChild(map);
+
 container.addChild(boyShape);
-container.x = 0;
+container.x = 50;
 container.y = 0;
 
-renderCore.start(container);
-//renderCore.start(boyShape);
-//renderCore.start(container,[map,boyShape]);
+renderCore.start(container,["0.jpg","1.jpg"]);
 
 var ticker = new Ticker();
 ticker.start([body]);
