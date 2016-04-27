@@ -20,15 +20,37 @@ module data {
             var obj = JSON.parse(content);
             this.mapData = obj.map;
         }
-        
-        public saveFile(){
+        public writeFile(data){
+                var map_path = __dirname + "/mapsave.json"
+
+                var obj = JSON.stringify(data);
+                fs.writeFileSync(map_path, obj, "utf-8");
             
         }
         
-        public mapData;
+
         
-        public picData;
+        public saveFile(worldmap:editor.WorldMap){
+            var rows = mapData.length;
+            var cols = mapData[0].length;
+            var children=worldmap;
+            var Savemapdata=new Array();
+             for (var col = 0; col < rows; col++) {
+                Savemapdata[col]=new Array();
+             for (var row = 0; row < cols; row++) {
+                 var child=<editor.Tile>children.getChild(col,row);
+                Savemapdata[col].push(new editor.Mapdata( child.material.material.source,child.walkable));
+             }
+           
+            
+        }
+        this.writeFile(Savemapdata);
+        }
+        
+        public mapData;
 
     }
+
+
 
 }

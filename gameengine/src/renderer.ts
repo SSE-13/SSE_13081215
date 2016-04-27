@@ -113,6 +113,13 @@ module render {
 
 
         source;
+        name:string;
+        constructor(source:string,name:string){
+            super();
+            this.name=name;
+            this.source=source;
+            
+        }
 
         render(context: CanvasRenderingContext2D) {
 
@@ -128,6 +135,7 @@ module render {
         }
 
     }
+    
 
     export class Rect extends DisplayObject {
 

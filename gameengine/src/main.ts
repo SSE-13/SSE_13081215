@@ -2,13 +2,13 @@
 
 function createMapEditor() {
     var world = new editor.WorldMap();
-    var rows = mapData.length;   //map有几行
-    var cols = mapData[0].length;   //map有几列
+    var rows = mapData.length;
+    var cols = mapData[0].length;
 
     for (var col = 0; col < rows; col++) {
+
         for (var row = 0; row < cols; row++) {
             var tile = new editor.Tile();
-            
             tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
             tile.y = row * editor.GRID_PIXEL_HEIGHT
@@ -16,77 +16,98 @@ function createMapEditor() {
             tile.ownedRow = row;
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
-            
-            tile.xPosition = tile.x/editor.GRID_PIXEL_WIDTH;
-            tile.yPosition = tile.y/editor.GRID_PIXEL_HEIGHT;
-            
-            tile.xtext = tile.xPosition.toString();
-            tile.ytext = tile.yPosition.toString();
-            
-            tile.Resource = pic[picData[row][col]];
-            
+
+
             world.addChild(tile);
 
 
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
+
         }
+
     }
+
+
+
+
     return world;
 
 }
 
-var rect = new render.Rect;
-rect.x = 100;
-rect.y = 60;
-rect.height = 10;
-rect.width = 10;
+
+var cement = new editor.Material("cement.jpg", "cement", 0);
+var water = new editor.Material("water.jpg", "water", 0);
+var wood = new editor.Material("wood.jpg", "wood", 0);
+var materials = new Array<editor.Material>();
+materials.push(cement);
+materials.push(water);
+materials.push(wood);
+
+
+var currenttile: editor.Tile;
+
+
+//读取json配置文件
+
+
+/*function LoadData(callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", __dirname + "/mapsave.json", true);
+    xmlhttp.send(null);
+    xmlhttp.onload = onloadComplete
+    function onloadComplete() {
+        var data = JSON.parse(xmlhttp.responseText);
+        callback(data);
+    }
 
 
 
-var xtext = new render.TextField;
-var ytext = new render.TextField;
-
-function onTileClick(tile: editor.Tile) {
-    console.log(tile);
-    
-    var button = new ui.Button();
-     button.width = 100;
-     button.height = 30;
-     button.x=100;
-     button.y=60;
-     button.onClick = ()=> {
-      if(button.text=="否"){
-        button.text="是";
-        this.judge =0;
-         button.background.color = "#0000FF"
-     }else{
-         button.text="否";
-            this.judge =1;
-         button.background.color = "#FF0000"
-     }
-   }
 }
 
-var pic = [];
+LoadData(function(data){
+    console.log(data[0][0].walkable,data[0][0].material);
+})*/ 
+
+
+
+function onTileClick(tile: editor.Tile) {
+
+
+    currenttile = tile;
+    if (mapEditor.children[mapEditor.children.length] != mapEditor.stroke) {
+        mapEditor.addChild(mapEditor.stroke);
+    }
+    mapEditor.stroke.x = tile.x;
+    mapEditor.stroke.y = tile.y;
+    information.Update(tile);
+    console.log(tile.toString());
+}
 
 var storage = data.Storage.getInstance();
 storage.readFile();
 var mapData = storage.mapData;
-var picData = storage.picData;
+
+
+
+
 
 var renderCore = new render.RenderCore();
 var eventCore = events.EventCore.getInstance();
 eventCore.init();
 
 
+var mapEditor = createMapEditor();
 
 var stage = new render.DisplayObjectContainer();
-
-var mapEditor = createMapEditor();
 stage.addChild(mapEditor);
+var information = new ui.Information();
+information.x = 300;
 
-var panel = new editor.ControlPanel(mapData,mapEditor);
+var panel = new editor.ControlPanel(materials);
 panel.x = 300;
+panel.y = 150;
+stage.addChild(information);
 stage.addChild(panel);
 
-renderCore.start(stage);
+
+renderCore.start(stage, ["wood.jpg", "water.jpg", "cement.jpg", "Stroke.png"]);

@@ -69,15 +69,15 @@ module editor {
 
 
         constructor() {
-            super("cement.jpg","Tile");
+            super("Red.jpg","Tile");
         }
 
         public setWalkable(value) {
             if(value==0){
-                this.material=new Material("cement.jpg","cement",value);
+                this.material=new Material("Red.jpg","red",value);
             }
             else{
-                this.material=new Material("water.jpg","water",value);
+                this.material=new Material("Black.jpg","black",value);
             }
             this.source=this.material.material.source;
             this.name=this.material.material.name;

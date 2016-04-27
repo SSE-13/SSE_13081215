@@ -17,7 +17,7 @@ var data;
             this.mapData = obj.map;
         };
         Storage.prototype.writeFile = function (data) {
-            var map_path = __dirname + "/mapinfo.json";
+            var map_path = __dirname + "/mapsave.json";
             var obj = JSON.stringify(data);
             fs.writeFileSync(map_path, obj, "utf-8");
         };

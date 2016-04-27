@@ -15,109 +15,113 @@ var editor;
             this.cache = document.createElement("canvas");
             this.cache.width = 400;
             this.cache.height = 400;
+            this.stroke = new render.Bitmap("Stroke.png", "stroke");
         }
+        WorldMap.prototype.getChild = function (row, col) {
+            var rows = mapData.length;
+            var cols = mapData[0].length;
+            return this.children[row * cols + col];
+        };
         WorldMap.prototype.render = function (context) {
             _super.prototype.render.call(this, context);
         };
         return WorldMap;
     }(render.DisplayObjectContainer));
     editor.WorldMap = WorldMap;
+    var Mapdata = (function () {
+        function Mapdata(material, walkable) {
+            this.material = material;
+            this.walkable = walkable;
+        }
+        return Mapdata;
+    }());
+    editor.Mapdata = Mapdata;
+    var Material = (function () {
+        function Material(source, name, walkable) {
+            this.material = new render.Bitmap(source, name);
+            this.walkable = walkable;
+        }
+        Material.prototype.setWalkable = function (walkable) {
+            this.walkable = walkable;
+        };
+        Material.prototype.IsWalkableMaterial = function () {
+            return this.walkable;
+        };
+        return Material;
+    }());
+    editor.Material = Material;
     var Tile = (function (_super) {
         __extends(Tile, _super);
         function Tile() {
-            _super.call(this);
+            _super.call(this, "cement.jpg", "Tile");
         }
         Tile.prototype.setWalkable = function (value) {
-            //this.color = value ? "#0000FF" : "#FF0000";
-            this.judge = value ? true : false;
+            if (value == 0) {
+                this.material = new Material("cement.jpg", "cement", value);
+            }
+            else {
+                this.material = new Material("water.jpg", "water", value);
+            }
+            this.source = this.material.material.source;
+            this.name = this.material.material.name;
+            this.walkable = value;
+        };
+        Tile.prototype.setMaterial = function (material) {
+            this.material = material;
+            this.source = this.material.material.source;
+            this.name = this.material.material.name;
+            this.walkable = this.material.walkable;
+        };
+        Tile.prototype.toString = function () {
+            if (this.material.material.name) {
+                return "row:" + this.ownedRow + "\ncol:" + this.ownedCol + "\nwalkable:" + this.walkable + "\nmaterial:" + this.material.material.name;
+            }
         };
         return Tile;
     }(render.Bitmap));
     editor.Tile = Tile;
     var ControlPanel = (function (_super) {
         __extends(ControlPanel, _super);
-        function ControlPanel(mapData, mapEditor) {
+        function ControlPanel(materials) {
             var _this = this;
             _super.call(this);
-            var row = new render.TextField;
-            row.text = "行：";
-            //row.width = 100;
-            //row.height = 30;
-            row.x = 0;
-            row.y = 100;
-            this.addChild(row);
-            var col = new render.TextField;
-            col.text = "列: ";
-            //col.width = 100;
-            //col.height = 30;
-            col.x = 0;
-            col.y = 200;
-            this.addChild(col);
-            var isWalk = new render.TextField;
-            isWalk.text = "是否可以走: ";
-            //isWalk.width = 100;
-            //isWalk.height = 30;
-            isWalk.x = 0;
-            isWalk.y = 300;
-            this.addChild(isWalk);
-            var xtext = new render.TextField;
-            var ytext = new render.TextField;
-            xtext.x = 30;
-            xtext.y = 0;
-            ytext.x = 30;
-            ytext.y = 100;
-            this.addChild(xtext);
-            this.addChild(ytext);
-            var button = new ui.Button();
-            button.text = " ";
-            button.width = 100;
-            button.height = 30;
-            button.x = 0;
-            button.y = 320;
-            this.addChild(button);
-            button.onClick = function () {
-                var x = parseInt(xtext.text) - 1;
-                var y = parseInt(ytext.text) - 1;
-                var tile = new Tile();
-                tile = mapEditor.children[x * mapData[0].length + y];
-                if (tile.judge) {
-                    button.background.color = "#FF0000";
-                    button.text = "否";
-                    mapData[y][x] = 0;
+            var materialradio = new ui.MaterialRadio(materials);
+            materialradio.radiobuttons[0].text = "wood";
+            materialradio.radiobuttons[1].text = "water";
+            materialradio.radiobuttons[2].text = "cement";
+            var walkableradio = new ui.WalkableRadio(materials);
+            walkableradio.radiobuttons[0].text = "可走";
+            walkableradio.radiobuttons[1].text = "不可走";
+            this.currentmaterial = materialradio.setMaterial;
+            var submit = new ui.Button("提交");
+            submit.height = 50;
+            submit.y = 230;
+            var save = new ui.Button("保存");
+            save.height = 50;
+            save.x = 120;
+            save.y = 230;
+            submit.onClick = function () {
+                if (currenttile) {
+                    var rows = mapData.length;
+                    var cols = mapData[0].length;
+                    _this.currentmaterial = materialradio.setMaterial;
+                    _this.currentmaterial.walkable = walkableradio.walkable;
+                    var child = mapEditor.getChild(currenttile.ownedCol, currenttile.ownedRow);
+                    child.setMaterial(_this.currentmaterial);
+                    information.Update(child);
                 }
-                else {
-                    button.background.color = "#0000FF";
-                    button.text = "是";
-                    mapData[y][x] = 1;
-                }
-                var source = new render.TextField;
-                source.text = "网格素材: ";
-                //source.width = 100;
-                //source.height = 30;
-                source.x = 0;
-                source.y = 400;
-                _this.addChild(source);
-                var sourcebutton = new ui.Button;
-                sourcebutton.width = 100;
-                sourcebutton.height = 30;
-                sourcebutton.x = 0;
-                sourcebutton.y = 420;
-                _this.addChild(sourcebutton);
-                sourcebutton.onClick = function () {
-                    var a = parseInt(xtext.text) - 1;
-                    var b = parseInt(ytext.text) - 1;
-                    var tile = new Tile();
-                    tile = mapEditor.children[a * mapData[0].length + b];
-                    var save = new render.Bitmap();
-                    save.x = 0;
-                    save.y = 450;
-                    _this.addChild(save);
-                    var undo = new render.Bitmap();
-                    undo.x = 0;
-                    undo.y = 500;
-                    _this.addChild(undo);
-                };
+                else
+                    alert("请先选择网格");
             };
+            save.onClick = function () {
+                storage.saveFile(mapEditor);
+                alert("保存成功");
+            };
+            walkableradio.x = 120;
+            this.addChild(materialradio);
+            this.addChild(walkableradio);
+            this.addChild(submit);
+            this.addChild(save);
         }
         return ControlPanel;
     }(render.DisplayObjectContainer));
