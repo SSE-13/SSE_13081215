@@ -38,7 +38,7 @@ var editor;
         function ControlPanel() {
             _super.call(this);
             var button = new ui.Button();
-            //button.text = "Hello";
+            button.text = " ";
             button.width = 100;
             button.height = 30;
             button.x = 0;

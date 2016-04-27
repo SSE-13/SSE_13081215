@@ -55,7 +55,7 @@ module editor {
             super();
             
             var button = new ui.Button();
-            //button.text = "Hello";
+            button.text = " ";
             button.width = 100;
             button.height = 30;
             button.x = 0;
