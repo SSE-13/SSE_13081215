@@ -12,6 +12,10 @@ function createMapEditor() {
             tile.ownedRow = row;
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
+            tile.xPosition = tile.x / editor.GRID_PIXEL_WIDTH;
+            tile.yPosition = tile.y / editor.GRID_PIXEL_HEIGHT;
+            tile.xtext = tile.xPosition.toString();
+            tile.ytext = tile.yPosition.toString();
             world.addChild(tile);
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
