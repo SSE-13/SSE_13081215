@@ -56,7 +56,12 @@ module editor {
     
     export class ControlPanel extends render.DisplayObjectContainer {
         
-        constructor(){
+        xtext;
+        ytext;
+        button;
+        sourcebutton;
+        
+        constructor(mapData,mapEditor){
             super();
             
             
@@ -102,13 +107,13 @@ module editor {
             sourcebutton.onClick = () =>{
                 if(sourcebutton.background.color = "#0000FF"){
                     sourcebutton.background.color = "FF0000";
-                    sourcebutton.judge = false;
+                    //sourcebutton.judge = false;
                 }
-                else{
+              /*  else{
                 sourcebutton.background.color = "#0000FF";
                 sourcebutton.judge = true;
                 }
-                
+                */
             }
             
             var button = new ui.Button();

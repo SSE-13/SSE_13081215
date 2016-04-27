@@ -35,7 +35,7 @@ var editor;
     editor.Tile = Tile;
     var ControlPanel = (function (_super) {
         __extends(ControlPanel, _super);
-        function ControlPanel() {
+        function ControlPanel(mapData, mapEditor) {
             _super.call(this);
             var row = new render.TextField;
             row.text = "行：";
@@ -74,12 +74,12 @@ var editor;
             sourcebutton.onClick = function () {
                 if (sourcebutton.background.color = "#0000FF") {
                     sourcebutton.background.color = "FF0000";
-                    sourcebutton.judge = false;
                 }
-                else {
-                    sourcebutton.background.color = "#0000FF";
-                    sourcebutton.judge = true;
-                }
+                /*  else{
+                  sourcebutton.background.color = "#0000FF";
+                  sourcebutton.judge = true;
+                  }
+                  */
             };
             var button = new ui.Button();
             button.text = " ";

@@ -26,6 +26,8 @@ module data {
         }
         
         public mapData;
+        
+        public picData;
 
     }
 
