@@ -45,6 +45,13 @@ var editor;
             button.onClick = function () {
                 alert("button cliked");
             };
+            var row = new render.TextField;
+            row.text = "行：";
+            row.width = 100;
+            row.height = 30;
+            row.x = 0;
+            row.y = 0;
+            this.addChild(row);
         }
         return ControlPanel;
     }(render.DisplayObjectContainer));
